@@ -126,7 +126,7 @@ public:
     int findLast(int toFind);
 };
 
-#include "ArrayList.inl
+#include "ArrayList.inl"
 
 
 #endif //COMP220_ARRAYLIST_H

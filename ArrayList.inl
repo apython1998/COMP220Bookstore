@@ -56,6 +56,22 @@ ArrayList<T>::~ArrayList() {
 }
 
 /**
+ * generates a copy of a given array
+ * @param arrayToCopy
+ * @param size
+ * @return a pointer to the copy array, which must be deleted by the user
+ */
+template <class T>
+T* copyArray(const T* arrayToCopy, const int size) {
+    int* copy = new int[size];
+    for (int i = 0; i<size; i++) {
+        copy[i] = arrayToCopy[i];
+    }
+    return copy;
+}
+
+
+/**
      * replaces the old array with an array twice the size
      * private method only called within ArrayList when necessary
      * @post: array points to a new array of twice the size with values copied from the old one,
@@ -63,8 +79,7 @@ ArrayList<T>::~ArrayList() {
 */
 template <class T>
 void ArrayList<T>::doubleCapacity() {
-    int nulltimer = 0;
-    T* original = ::copyArray(array, currItemCount, nulltimer);
+    T* original = copyArray(array, currItemCount);
     delete[] array;
     array = new T[currCapacity * 2];
     for (int i=0; i<currItemCount; i++) {
@@ -215,7 +230,7 @@ void ArrayList<T>::clearList() {
  * @return a string representing the given array in the exact format shown below
  */
 template <class T>
-std::string toString() {
+std::string ArrayList<T>::toString() {
     //TODO
     std::string arrayStringify = "{";
     for (int i=0; i<currItemCount; i++) {
@@ -238,7 +253,7 @@ int ArrayList<T>::find(T toFind) {
         return -1;
     }
     for (int i = 0; i < currItemCount; i++) {
-        if (arrayPtr[i] == toFind) {
+        if (array[i] == toFind) {
             return i;
         }
     }
@@ -252,11 +267,11 @@ int ArrayList<T>::find(T toFind) {
 template <class T>
 int ArrayList<T>::findLast(T toFind) {
     int lastIndex = -1;
-    if (size == 0) {
+    if (currItemCount == 0) {
         return -1;
     }
-    for (int i = 0; i < size; i++) {
-        if (arrayPtr[i] == toFind) {
+    for (int i = 0; i < currItemCount; i++) {
+        if (array[i] == toFind) {
             lastIndex = i;
         }
     }
