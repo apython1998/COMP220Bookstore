@@ -3,15 +3,15 @@
 //
 
 #include <iostream>
-#include "ArrayLib.h"
 #include "ArrayList.h"
 
 /**
  * Constructor for ArrayList
  * @param initialCapacity
  */
-ArrayList::ArrayList(int initialCapacity) {
-    array = new int[initialCapacity];
+template <class T>
+ArrayList<T>::ArrayList(int initialCapacity) {
+    array = new T[initialCapacity];
     currItemCount = 0;
     currCapacity = initialCapacity;
 }
@@ -20,8 +20,9 @@ ArrayList::ArrayList(int initialCapacity) {
  * Copy constructor for ArrayList
  * @param arrayListToCopy
  */
-ArrayList::ArrayList(const ArrayList &arrayListToCopy) {
-    array = new int[arrayListToCopy.currCapacity];
+template <class T>
+ArrayList<T>::ArrayList(const ArrayList<T> &arrayListToCopy) {
+    array = new T[arrayListToCopy.currCapacity];
     currItemCount = arrayListToCopy.currItemCount;
     currCapacity = arrayListToCopy.currCapacity;
     for (int i=0; i < currItemCount; i++) {
@@ -30,11 +31,12 @@ ArrayList::ArrayList(const ArrayList &arrayListToCopy) {
 }
 
 //Overloaded Assignment Operator
-ArrayList& ArrayList::operator=(const ArrayList &arrayListToCopy) {
+template <class T>
+ArrayList<T>& ArrayList::operator=(const ArrayList<T> &arrayListToCopy) {
     if (this != &arrayListToCopy) {
         delete[] array;
         array = nullptr;
-        array = new int[arrayListToCopy.currCapacity];
+        array = new T[arrayListToCopy.currCapacity];
         currItemCount = arrayListToCopy.currItemCount;
         currCapacity = arrayListToCopy.currCapacity;
         for (int i = 0; i < currItemCount; i++) {
@@ -47,7 +49,8 @@ ArrayList& ArrayList::operator=(const ArrayList &arrayListToCopy) {
 /**
  * Destructor for ArrayList
  */
-ArrayList::~ArrayList() {
+template <class T>
+ArrayList<T>::~ArrayList() {
     delete[] array;
     array = nullptr;
 }
@@ -58,11 +61,12 @@ ArrayList::~ArrayList() {
      * @post: array points to a new array of twice the size with values copied from the old one,
      *        the old array is deleted.
 */
-void ArrayList::doubleCapacity() {
+template <class T>
+void ArrayList<T>::doubleCapacity() {
     int nulltimer = 0;
-    int* original = ::copyArray(array, currItemCount, nulltimer);
+    T* original = ::copyArray(array, currItemCount, nulltimer);
     delete[] array;
-    array = new int[currCapacity * 2];
+    array = new T[currCapacity * 2];
     for (int i=0; i<currItemCount; i++) {
         array[i] = original[i];
     }
@@ -75,7 +79,8 @@ void ArrayList::doubleCapacity() {
  * @param itemToAdd the item to add to the end of the array
  * @post the list has an additional value in it, at the end
  */
-void ArrayList::insertAtEnd(int itemToAdd) {
+template <class T>
+void ArrayList<T>::insertAtEnd(T itemToAdd) {
     if (currItemCount == currCapacity) {
         doubleCapacity();
     }
@@ -89,7 +94,8 @@ void ArrayList::insertAtEnd(int itemToAdd) {
  * @post the list has an additional value in it, at the beginning
  *    all other items are shifted down by one index
  */
-void ArrayList::insertAtFront(int itemToAdd) {
+template <class T>
+void ArrayList<T>::insertAtFront(T itemToAdd) {
     if (currItemCount == currCapacity) {
         doubleCapacity();
     }
@@ -111,7 +117,8 @@ void ArrayList::insertAtFront(int itemToAdd) {
  *        all further values have been shifted down by one index
  * @throws out_of_range exception if index is invalid (< 0 or >currItemCount)
  */
-void ArrayList::insertAt(int itemToAdd, int index) {
+template <class T>
+void ArrayList<T>::insertAt(T itemToAdd, int index) {
     if (index < 0 || index > currItemCount) {
         throw std::out_of_range("Index Out of Bounds");
     } else if (index == currItemCount) {
@@ -138,7 +145,8 @@ void ArrayList::insertAt(int itemToAdd, int index) {
  * @returns a copy of the item at index
  * @throws out_of_range exception if index is invalid
  */
-int ArrayList::getValueAt(int index) {
+template <class T>
+T ArrayList<T>::getValueAt(int index) {
     if (index<0 || index>= currItemCount) {
         throw std::out_of_range("Index Out of Bounds");
     } else {
@@ -153,11 +161,12 @@ int ArrayList::getValueAt(int index) {
  * @returns a copy of the item at index
  * @throws out_of_range exception if index is invalid
  */
-int ArrayList::removeValueAt(int index) {
+template <class T>
+T ArrayList<T>::removeValueAt(int index) {
     if (index<0 || index>= currItemCount) {
         throw std::out_of_range("Index Out of Bounds");
     } else {
-        int beingRemoved = array[index];
+        T beingRemoved = array[index];
         for (int i=0; i<currItemCount; i++) {
             if (i>index) {
                 array[i-1] = array[i];
@@ -172,7 +181,8 @@ int ArrayList::removeValueAt(int index) {
  * checks if there are any valid items in the list
  * @returns true if there are no valid items in the list, false otherwise
  */
-bool ArrayList::isEmpty() {
+template <class T>
+bool ArrayList<T>::isEmpty() {
     if (currItemCount>0) {
         return false;
     } else {
@@ -184,7 +194,8 @@ bool ArrayList::isEmpty() {
  * returns a count of valid items currently in the list
  * @returns the number of valid items in the list
  */
-int ArrayList::itemCount() {
+template <class T>
+int ArrayList<T>::itemCount() {
     return currItemCount;
 }
 
@@ -192,46 +203,63 @@ int ArrayList::itemCount() {
  * removes all valid items from the list
  * @post the list is completely clear of valid items
  */
-void ArrayList::clearList() {
+template <class T>
+void ArrayList<T>::clearList() {
     currItemCount = 0;
 }
 
 /**
- * gives a string representation of the current list
- * @returns a string representing the given list in the exact format shown below
- * {1, 2, 3, 4, 5}
+ * creates a string version of an array for easy printing
+ * @param arrayPtr
+ * @param size
+ * @return a string representing the given array in the exact format shown below
  */
-std::string ArrayList::toString() {
-    return ::toString(array, currItemCount);
+template <class T>
+std::string toString() {
+    //TODO
+    std::string arrayStringify = "{";
+    for (int i=0; i<currItemCount; i++) {
+        arrayStringify += std::to_string(array[i]);
+        if (i != currItemCount-1) {
+            arrayStringify += ", ";
+        }
+    }
+    arrayStringify += "}";
+    return arrayStringify;
 }
 
 /**
- * finds the largest value in the array
- * @post numLinesRun is updated to include lines run by this function
- * @return the first index of the maximum value, or -1 if size < 1
- */
-int ArrayList::findMaxIndex() {
-    int nulltimer = 0;
-    return ::findMaxIndex(array, currItemCount, nulltimer);
-}
-
-/**
- * Searches an int array for a certain value
- * @post numLinesRun is updated to include lines run by this function
+ * Searches an array for a certain value
  * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
  */
-int ArrayList::find(int numToFind) {
-    int nulltimer = 0;
-    return ::find(array, currItemCount, numToFind, nulltimer);
+template <class T>
+int ArrayList<T>::find(T toFind) {
+    if (currItemCount == 0) {
+        return -1;
+    }
+    for (int i = 0; i < currItemCount; i++) {
+        if (arrayPtr[i] == toFind) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 /**
- * Searches an int array for a certain value
- * @post numLinesRun is updated to include lines run by this function
+ * Searches an array for a certain value
  * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
  */
-int ArrayList::findLast(int numToFind) {
-    int nulltimer = 0;
-    return ::findLast(array, currItemCount, numToFind, nulltimer);
+template <class T>
+int ArrayList<T>::findLast(T toFind) {
+    int lastIndex = -1;
+    if (size == 0) {
+        return -1;
+    }
+    for (int i = 0; i < size; i++) {
+        if (arrayPtr[i] == toFind) {
+            lastIndex = i;
+        }
+    }
+    return lastIndex;
 }
 

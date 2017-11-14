@@ -3,5 +3,5 @@ project(COMP220Bookstore)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp ListTests.cpp ArrayLib.cpp ArrayList.cpp)
+set(SOURCE_FILES main.cpp ListTests.cpp ArrayList.inl)
 add_executable(COMP220Bookstore ${SOURCE_FILES})

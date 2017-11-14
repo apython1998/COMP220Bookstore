@@ -9,10 +9,11 @@
 #include <string>
 #include "List.h"
 
+template <class T>
 class ArrayList: public List {
 private:
     //pointer to the start of the array
-    int* array;
+    T* array;
     //count of the number of valid items currently stored in the array
     int currItemCount;
     //size of the current array
@@ -35,10 +36,10 @@ public:
     ArrayList(int initialCapacity=5);
 
     //Copy Constructor
-    ArrayList(const ArrayList& arrayListToCopy);
+    ArrayList(const ArrayList<T>& arrayListToCopy);
     
     //Overloaded Assignment Operator
-    ArrayList& operator=(const ArrayList& arrayListToCopy);
+    ArrayList<T>& operator=(const ArrayList<T>& arrayListToCopy);
     
     //Destructor
     ~ArrayList();
@@ -48,7 +49,7 @@ public:
      * @param itemToAdd the item to add to the end of the array
      * @post the list has an additional value in it, at the end
      */
-    void insertAtEnd(int itemToAdd);
+    void insertAtEnd(T itemToAdd);
 
     /**
      * appends the new item to the beginning of the list
@@ -56,7 +57,7 @@ public:
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    void insertAtFront(int itemToAdd);
+    void insertAtFront(T itemToAdd);
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -66,7 +67,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or >currItemCount)
      */
-    void insertAt(int itemToAdd, int index);
+    void insertAt(T itemToAdd, int index);
 
     /**
      * gets a value from the list
@@ -74,7 +75,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int getValueAt(int index);
+    T getValueAt(int index);
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -83,7 +84,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int removeValueAt(int index);
+    T removeValueAt(int index);
     
     /**
      * checks if there are any valid items in the list
@@ -111,26 +112,21 @@ public:
     std::string toString();
 
     /**
-     * finds the largest value in the array
-     * @post numLinesRun is updated to include lines run by this function
-     * @return the first index of the maximum value, or -1 if size < 1
-     */
-    int findMaxIndex();
-
-    /**
-     * Searches an int array for a certain value
+     * Searches an array for a certain value
      * @post numLinesRun is updated to include lines run by this function
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    int find(int numToFind);
+    int find(int toFind);
 
     /**
-     * Searches an int array for a certain value
+     * Searches an array for a certain value
      * @post numLinesRun is updated to include lines run by this function
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    int findLast(int numToFind);
+    int findLast(int toFind);
 };
+
+#include "ArrayList.inl
 
 
 #endif //COMP220_ARRAYLIST_H

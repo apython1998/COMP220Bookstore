@@ -7,6 +7,7 @@
 
 #include <stdexcept>
 
+template <class T>
 class List {
 public:
     //Destructor
@@ -17,7 +18,7 @@ public:
      * @param itemToAdd the item to add to the end of the array
      * @post the list has an additional value in it, at the end
      */
-    virtual void insertAtEnd(int itemToAdd)=0;
+    virtual void insertAtEnd(T itemToAdd)=0;
 
     /**
      * appends the new item to the beginning of the list
@@ -25,7 +26,7 @@ public:
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    virtual void insertAtFront(int itemToAdd)=0;
+    virtual void insertAtFront(T itemToAdd)=0;
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -35,7 +36,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or >currItemCount)
      */
-    virtual void insertAt(int itemToAdd, int index)=0;
+    virtual void insertAt(T itemToAdd, int index)=0;
 
     /**
      * gets a value from the list
@@ -43,7 +44,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    virtual int getValueAt(int index)=0;
+    virtual T getValueAt(int index)=0;
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -52,7 +53,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    virtual int removeValueAt(int index)=0;
+    virtual T removeValueAt(int index)=0;
     
     /**
      * checks if there are any valid items in the list
@@ -89,13 +90,13 @@ public:
      * Searches an int array for a certain value
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    virtual int find(int numToFind)=0;
+    virtual int find(int toFind)=0;
 
     /**
      * Searches an int array for a certain value
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    virtual int findLast(int numToFind)=0;
+    virtual int findLast(int toFind)=0;
 };
 
 
