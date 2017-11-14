@@ -9,7 +9,7 @@
 #include <string>
 #include "List.h"
 
-class ArrayList: public IntList {
+class ArrayList: public List {
 private:
     //pointer to the start of the array
     int* array;

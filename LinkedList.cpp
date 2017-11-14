@@ -10,7 +10,7 @@
  * constructor
  * O(1)
  */
-IntLinkedList::IntLinkedList() {
+LinkedList::LinkedList() {
     size = 0;
     front = nullptr;
     end = nullptr;
@@ -18,13 +18,13 @@ IntLinkedList::IntLinkedList() {
 
 /**
  * copy constructor, O(n)
- * @param intLinkedListToCopy
+ * @param LinkedListToCopy
  */
-IntLinkedList::IntLinkedList(const IntLinkedList &intLinkedListToCopy) {
-    size = intLinkedListToCopy.size;
+LinkedList::LinkedList(const LinkedList &LinkedListToCopy) {
+    size = LinkedListToCopy.size;
     front = nullptr;
     end = nullptr;
-    LinkedNode* current = intLinkedListToCopy.front;
+    LinkedNode* current = LinkedListToCopy.front;
     while (current != nullptr) {
         LinkedNode* newNode = new LinkedNode(*current);
         if (front == nullptr){
@@ -38,34 +38,34 @@ IntLinkedList::IntLinkedList(const IntLinkedList &intLinkedListToCopy) {
     }
 }
 
-void cleanupIntLinkedList(LinkedNode* current) {
+void cleanupLinkedList(LinkedNode* current) {
     if (current == nullptr) {
         return;
     } else {
-        cleanupIntLinkedList((*current).getNext());
+        cleanupLinkedList((*current).getNext());
         delete current;
     }
 }
 
 //Destructor, O(n)
-IntLinkedList::~IntLinkedList(){
-    cleanupIntLinkedList(front);
+LinkedList::~LinkedList(){
+    cleanupLinkedList(front);
     front = nullptr;
     end = nullptr;
 }
 
 /**
  * Assignment operator, O(n) because it runs through once in cleanup and again to copy
- * @param intLinkedListToCopy
+ * @param LinkedListToCopy
  * @return
  */
-IntLinkedList& IntLinkedList::operator=(const IntLinkedList& intLinkedListToCopy) {
-    if (this != &intLinkedListToCopy) {
-        cleanupIntLinkedList(front);
+LinkedList& LinkedList::operator=(const LinkedList& LinkedListToCopy) {
+    if (this != &LinkedListToCopy) {
+        cleanupLinkedList(front);
         front = nullptr;
         end = nullptr;
-        size = intLinkedListToCopy.size;
-        LinkedNode* current = intLinkedListToCopy.front;
+        size = LinkedListToCopy.size;
+        LinkedNode* current = LinkedListToCopy.front;
         while (current != nullptr) {
             LinkedNode* newNode = new LinkedNode(*current);
             if (front == nullptr){
@@ -85,7 +85,7 @@ IntLinkedList& IntLinkedList::operator=(const IntLinkedList& intLinkedListToCopy
  * insertAtEnd, O(1)
  * @param itemToAdd
  */
-void IntLinkedList::insertAtEnd(int itemToAdd) {
+void LinkedList::insertAtEnd(int itemToAdd) {
     LinkedNode* newNode = new LinkedNode(itemToAdd);
     if (size == 0) {
         front = newNode;
@@ -101,7 +101,7 @@ void IntLinkedList::insertAtEnd(int itemToAdd) {
  * insertAtFront, O(1)
  * @param itemToAdd
  */
-void IntLinkedList::insertAtFront(int itemToAdd) {
+void LinkedList::insertAtFront(int itemToAdd) {
     LinkedNode* newNode = new LinkedNode(itemToAdd);
     newNode->setNext(front);
     front = newNode;
@@ -116,7 +116,7 @@ void IntLinkedList::insertAtFront(int itemToAdd) {
  * @param itemToAdd
  * @param index
  */
-void IntLinkedList::insertAt(int itemToAdd, int index) {
+void LinkedList::insertAt(int itemToAdd, int index) {
     if (index <0 || index > size){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
@@ -147,7 +147,7 @@ void IntLinkedList::insertAt(int itemToAdd, int index) {
  * @param index
  * @return value at index
  */
-int IntLinkedList::getValueAt(int index) {
+int LinkedList::getValueAt(int index) {
     if (index <0 || index > (size-1)){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
@@ -166,7 +166,7 @@ int IntLinkedList::getValueAt(int index) {
  * @param index
  * @return item that you are removing
  */
-int IntLinkedList::removeValueAt(int index) {
+int LinkedList::removeValueAt(int index) {
     if (index <0 || index > (size-1)){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
@@ -205,7 +205,7 @@ int IntLinkedList::removeValueAt(int index) {
  * isEmpty, O(1)
  * @return true if its empty, otherwise false
  */
-bool IntLinkedList::isEmpty() {
+bool LinkedList::isEmpty() {
     return (front==nullptr && end==nullptr);
 }
 
@@ -213,15 +213,15 @@ bool IntLinkedList::isEmpty() {
  * itemCount, O(1)
  * @return number of items
  */
-int IntLinkedList::itemCount() {
+int LinkedList::itemCount() {
     return size;
 }
 
 /**
  * clearList, O(1)
  */
-void IntLinkedList::clearList() {
-    cleanupIntLinkedList(front);
+void LinkedList::clearList() {
+    cleanupLinkedList(front);
     front = nullptr;
     end = nullptr;
     size = 0;
@@ -231,7 +231,7 @@ void IntLinkedList::clearList() {
  * toString, O(n)
  * @return list as a string
  */
-std::string IntLinkedList::toString() {
+std::string LinkedList::toString() {
     std::string listString = "{";
     LinkedNode* current = front;
     for (int i=0; i<size; i++) {
@@ -250,7 +250,7 @@ std::string IntLinkedList::toString() {
  * findMaxIndex, O(n)
  * @return first index of max or -1
  */
-int IntLinkedList::findMaxIndex() {
+int LinkedList::findMaxIndex() {
     if (size<1) {
         return -1;
     }
@@ -276,7 +276,7 @@ int IntLinkedList::findMaxIndex() {
  * @param numToFind
  * @return first index of numToFind, or -1 if num is not in list
  */
-int IntLinkedList::find(int numToFind) {
+int LinkedList::find(int numToFind) {
     int currentIndex = 0;
     LinkedNode* current = front;
     while (currentIndex < size) {
@@ -295,7 +295,7 @@ int IntLinkedList::find(int numToFind) {
  * @param numToFind
  * @return last index of numToFind, or -1 if num is not in list
  */
-int IntLinkedList::findLast(int numToFind) {
+int LinkedList::findLast(int numToFind) {
     int indexOfNum = -1;
     int currentIndex = 0;
     LinkedNode* current = front;
