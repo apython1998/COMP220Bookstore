@@ -37,12 +37,40 @@ LinkedQueue<T>::LinkedQueue(const LinkedQueue<T>& queueToCopy){
 template <class T>
 LinkedQueue<T>::~LinkedQueue(){
     while (front != nullptr){
-        LinkedNode<T>* toDelete = end;
+        LinkedNode<T>* toDelete = front;
         front = front->getNext();
         delete toDelete;
     }
 }
 
+template <class T>
+LinkedQueue<T>& LinkedQueue<T>::operator=(const LinkedQueue<T> &queueToCopy) {
+    if (this != &queueToCopy) {
+        while (front != nullptr) {
+            LinkedNode<T>* toDelete = front;
+            front = front->getNext();
+            delete toDelete;
+        }
+        if (queueToCopy.front == nullptr){
+            front = nullptr;
+            end = nullptr;
+        }
+        else {
+            LinkedNode<T>* nodeToCopy = queueToCopy.front;
+            front = new LinkedNode<T>(nodeToCopy->getItem());
+            LinkedNode<T>* endOfNewChain = front;
+            nodeToCopy = nodeToCopy->getNext();
+            while (nodeToCopy != nullptr){
+                LinkedNode<T>* newNode = new LinkedNode<T>(nodeToCopy->getItem());
+                endOfNewChain->setNext(newNode);
+                endOfNewChain = newNode;
+                nodeToCopy = nodeToCopy->getNext();
+            }
+            end = endOfNewChain;
+        }
+    }
+    return *this;
+}
 
 //adds an item to the end of the queue
 template <class T>

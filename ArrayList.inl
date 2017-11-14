@@ -32,7 +32,7 @@ ArrayList<T>::ArrayList(const ArrayList<T> &arrayListToCopy) {
 
 //Overloaded Assignment Operator
 template <class T>
-ArrayList<T>& ArrayList::operator=(const ArrayList<T> &arrayListToCopy) {
+ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T> &arrayListToCopy) {
     if (this != &arrayListToCopy) {
         delete[] array;
         array = nullptr;
