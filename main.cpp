@@ -4,10 +4,11 @@
 #include <iostream>
 #include "List.h"
 #include "ArrayList.h"
-#include "ListTests.h
+#include "LinkedList.h"
+#include "ListTests.h"
 bool DO_TESTS=true;
 
-void testAllForList(List* list1, List* list2){
+void testAllForList(List<int>* list1, List<int>* list2){
     rangeErrorTests(list1);
 
     int a1[] {3, 5, 7, 9};

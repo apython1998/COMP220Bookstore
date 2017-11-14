@@ -10,7 +10,7 @@
 #include "List.h"
 
 template <class T>
-class LinkedList : public List {
+class LinkedList : public List<T> {
 private:
     int size;
     LinkedNode<T>* front;

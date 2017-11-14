@@ -10,7 +10,7 @@
 #include "List.h"
 
 template <class T>
-class ArrayList: public List {
+class ArrayList: public List<T> {
 private:
     //pointer to the start of the array
     T* array;
@@ -116,14 +116,14 @@ public:
      * @post numLinesRun is updated to include lines run by this function
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    int find(int toFind);
+    int find(T toFind);
 
     /**
      * Searches an array for a certain value
      * @post numLinesRun is updated to include lines run by this function
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    int findLast(int toFind);
+    int findLast(T toFind);
 };
 
 #include "ArrayList.inl"

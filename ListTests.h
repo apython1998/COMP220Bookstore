@@ -5,11 +5,11 @@
 #ifndef LAB9SOLN_LISTSTESTS_H_H
 #define LAB9SOLN_LISTSTESTS_H_H
 
-#include "IntList.h"
+#include "List.h"
 
-void rangeErrorTests(IntList* list);
-void insertAtFrontAndEndIsEmptyClearTester(IntList* insertAtEndList, IntList* insertAtFrontList, int* testInputArray, int size);
-void insertAtTester(IntList* list);
-void findTester(IntList* list);
+void rangeErrorTests(List<int>* list);
+void insertAtFrontAndEndIsEmptyClearTester(List<int>* insertAtEndList, List<int>* insertAtFrontList, int* testInputArray, int size);
+void insertAtTester(List<int>* list);
+void findTester(List<int>* list);
 
 #endif //LAB9SOLN_LISTSTESTS_H_H

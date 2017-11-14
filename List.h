@@ -84,7 +84,7 @@ public:
      * finds the largest value in the array
      * @return the first index of the maximum value, or -1 if size < 1
      */
-    virtual int findMaxIndex()=0;
+    //virtual int findMaxIndex()=0;
 
     /**
      * Searches an int array for a certain value

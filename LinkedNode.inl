@@ -4,33 +4,33 @@
 #include "LinkedNode.h"
 
 template <class T>
-LinkedNode::LinkedNode(T item){
+LinkedNode<T>::LinkedNode(T item){
     this->item = item;
     next = nullptr;
 }
 
 template <class T>
-LinkedNode::LinkedNode(const LinkedNode& nodeToCopy){
+LinkedNode<T>::LinkedNode(const LinkedNode<T>& nodeToCopy){
     item = nodeToCopy.item;
     next = nullptr;
 }
 
 template <class T>
-T LinkedNode::getItem(){
+T LinkedNode<T>::getItem(){
     return item;
 }
 
 template <class T>
-LinkedNode* LinkedNode::getNext(){
+LinkedNode<T>* LinkedNode<T>::getNext(){
     return next;
 }
 
 template <class T>
-void LinkedNode::setItem(T newItem){
+void LinkedNode<T>::setItem(T newItem){
     item = newItem;
 }
 
 template <class T>
-void LinkedNode::setNext(LinkedNode* newNext){
+void LinkedNode<T>::setNext(LinkedNode<T>* newNext){
     next = newNext;
 }

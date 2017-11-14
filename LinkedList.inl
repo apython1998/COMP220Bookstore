@@ -28,7 +28,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &LinkedListToCopy) {
     end = nullptr;
     LinkedNode<T>* current = LinkedListToCopy.front;
     while (current != nullptr) {
-        LinkedNode<T>* newNode = new LinkedNode(*current);
+        LinkedNode<T>* newNode = new LinkedNode<T>(*current);
         if (front == nullptr){
             front = newNode;
             end = newNode;
@@ -51,6 +51,7 @@ void cleanupLinkedList(LinkedNode<T>* current) {
 }
 
 //Destructor, O(n)
+template <class T>
 LinkedList<T>::~LinkedList(){
     cleanupLinkedList(front);
     front = nullptr;
@@ -160,7 +161,7 @@ T LinkedList<T>::getValueAt(int index) {
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
         int count = 0;
-        LinkedNode* current = front;
+        LinkedNode<T>* current = front;
         while (count != index) {
             count++;
             current = current -> getNext();
@@ -214,6 +215,7 @@ T LinkedList<T>::removeValueAt(int index) {
  * isEmpty, O(1)
  * @return true if its empty, otherwise false
  */
+template <class T>
 bool LinkedList<T>::isEmpty() {
     return (front==nullptr && end==nullptr);
 }
@@ -222,6 +224,7 @@ bool LinkedList<T>::isEmpty() {
  * itemCount, O(1)
  * @return number of items
  */
+template <class T>
 int LinkedList<T>::itemCount() {
     return size;
 }
@@ -229,6 +232,7 @@ int LinkedList<T>::itemCount() {
 /**
  * clearList, O(1)
  */
+template <class T>
 void LinkedList<T>::clearList() {
     cleanupLinkedList(front);
     front = nullptr;
@@ -240,9 +244,10 @@ void LinkedList<T>::clearList() {
  * toString, O(n)
  * @return list as a string
  */
+template <class T>
 std::string LinkedList<T>::toString() {
     std::string listString = "{";
-    LinkedNode* current = front;
+    LinkedNode<T>* current = front;
     for (int i=0; i<size; i++) {
         if (i != size-1) {
             listString += std::to_string(current->getItem()) + ", ";
@@ -259,6 +264,7 @@ std::string LinkedList<T>::toString() {
 // * findMaxIndex, O(n)
 // * @return first index of max or -1
 // */
+//template <class T>
 //int LinkedList<T>::findMaxIndex() {
 //    if (size<1) {
 //        return -1;
