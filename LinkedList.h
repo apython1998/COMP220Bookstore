@@ -2,14 +2,14 @@
 // Created by Alex Python on 10/31/17.
 //
 
-#ifndef LAB08_INTLINKEDLIST_H
-#define LAB08_INTLINKEDLIST_H
+#ifndef LAB08_LinkedList_H
+#define LAB08_LinkedList_H
 
 #include <stdexcept>
 #include "LinkedNode.h"
 #include "List.h"
 
-class IntLinkedList : public IntList {
+class LinkedList : public List {
 private:
     int size;
     LinkedNode* front;
@@ -17,13 +17,13 @@ private:
 
 public:
     //O(1)
-    IntLinkedList();
+    LinkedList();
     //O(n)
-    IntLinkedList(const IntLinkedList& intLinkedListToCopy);
+    LinkedList(const LinkedList& LinkedListToCopy);
     //O(n)
-    ~IntLinkedList();
+    ~LinkedList();
     //O(n) because it runs through once in cleanup, and once in copying over
-    IntLinkedList& operator=(const IntLinkedList& intLinkedListToCopy);
+    LinkedList& operator=(const LinkedList& LinkedListToCopy);
 
     /**
      * O(1)
@@ -123,4 +123,4 @@ public:
     int findLast(int numToFind);
 };
 
-#endif //LAB08_INTLINKEDLIST_H
+#endif //LAB08_LinkedList_H

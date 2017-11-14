@@ -7,10 +7,10 @@
 
 #include <stdexcept>
 
-class IntList {
+class List {
 public:
     //Destructor
-    virtual ~IntList(){};
+    virtual ~List(){};
 
     /**
      * appends the new item to the end of the list
