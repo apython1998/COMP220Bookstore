@@ -10,6 +10,7 @@
  * constructor
  * O(1)
  */
+template <class T>
 LinkedList::LinkedList() {
     size = 0;
     front = nullptr;
@@ -20,13 +21,14 @@ LinkedList::LinkedList() {
  * copy constructor, O(n)
  * @param LinkedListToCopy
  */
-LinkedList::LinkedList(const LinkedList &LinkedListToCopy) {
+template <class T>
+LinkedList::LinkedList(const LinkedList<T> &LinkedListToCopy) {
     size = LinkedListToCopy.size;
     front = nullptr;
     end = nullptr;
-    LinkedNode* current = LinkedListToCopy.front;
+    LinkedNode<T>* current = LinkedListToCopy.front;
     while (current != nullptr) {
-        LinkedNode* newNode = new LinkedNode(*current);
+        LinkedNode<T>* newNode = new LinkedNode(*current);
         if (front == nullptr){
             front = newNode;
             end = newNode;
@@ -38,7 +40,8 @@ LinkedList::LinkedList(const LinkedList &LinkedListToCopy) {
     }
 }
 
-void cleanupLinkedList(LinkedNode* current) {
+template <class T>
+void cleanupLinkedList(LinkedNode<T>* current) {
     if (current == nullptr) {
         return;
     } else {
@@ -59,15 +62,16 @@ LinkedList::~LinkedList(){
  * @param LinkedListToCopy
  * @return
  */
-LinkedList& LinkedList::operator=(const LinkedList& LinkedListToCopy) {
+template <class T>
+LinkedList& LinkedList::operator=(const LinkedList<T>& LinkedListToCopy) {
     if (this != &LinkedListToCopy) {
         cleanupLinkedList(front);
         front = nullptr;
         end = nullptr;
         size = LinkedListToCopy.size;
-        LinkedNode* current = LinkedListToCopy.front;
+        LinkedNode<T>* current = LinkedListToCopy.front;
         while (current != nullptr) {
-            LinkedNode* newNode = new LinkedNode(*current);
+            LinkedNode<T>* newNode = new LinkedNode<T>(*current);
             if (front == nullptr){
                 front = newNode;
                 end = newNode;
@@ -85,8 +89,9 @@ LinkedList& LinkedList::operator=(const LinkedList& LinkedListToCopy) {
  * insertAtEnd, O(1)
  * @param itemToAdd
  */
-void LinkedList::insertAtEnd(int itemToAdd) {
-    LinkedNode* newNode = new LinkedNode(itemToAdd);
+template <class T>
+void LinkedList::insertAtEnd(T itemToAdd) {
+    LinkedNode<T>* newNode = new LinkedNode<T>(itemToAdd);
     if (size == 0) {
         front = newNode;
         end = newNode;
@@ -101,8 +106,9 @@ void LinkedList::insertAtEnd(int itemToAdd) {
  * insertAtFront, O(1)
  * @param itemToAdd
  */
-void LinkedList::insertAtFront(int itemToAdd) {
-    LinkedNode* newNode = new LinkedNode(itemToAdd);
+template <class T>
+void LinkedList::insertAtFront(T itemToAdd) {
+    LinkedNode<T>* newNode = new LinkedNode<T>(itemToAdd);
     newNode->setNext(front);
     front = newNode;
     if (end == nullptr) {
@@ -116,7 +122,8 @@ void LinkedList::insertAtFront(int itemToAdd) {
  * @param itemToAdd
  * @param index
  */
-void LinkedList::insertAt(int itemToAdd, int index) {
+template <class T>
+void LinkedList::insertAt(T itemToAdd, int index) {
     if (index <0 || index > size){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
@@ -125,10 +132,10 @@ void LinkedList::insertAt(int itemToAdd, int index) {
         } else if (index == size) {
             insertAtEnd(itemToAdd);
         } else {
-            LinkedNode* newNode = new LinkedNode(itemToAdd);
+            LinkedNode<T>* newNode = new LinkedNode<T>(itemToAdd);
             int count = 0;
-            LinkedNode* last = nullptr;
-            LinkedNode* current = front;
+            LinkedNode<T>* last = nullptr;
+            LinkedNode<T>* current = front;
             while (count != index) {
                 count++;
 
@@ -147,7 +154,8 @@ void LinkedList::insertAt(int itemToAdd, int index) {
  * @param index
  * @return value at index
  */
-int LinkedList::getValueAt(int index) {
+template <class T>
+T LinkedList::getValueAt(int index) {
     if (index <0 || index > (size-1)){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
@@ -166,13 +174,14 @@ int LinkedList::getValueAt(int index) {
  * @param index
  * @return item that you are removing
  */
-int LinkedList::removeValueAt(int index) {
+template <class T>
+T LinkedList::removeValueAt(int index) {
     if (index <0 || index > (size-1)){
         throw std::out_of_range("INDEX OUT OF BOUNDS");
     } else {
         if (index == 0) {
-            LinkedNode* toRemove = front;
-            int toReturn = toRemove->getItem();
+            LinkedNode<T>* toRemove = front;
+            T toReturn = toRemove->getItem();
             front = toRemove->getNext();
             delete toRemove;
             size--;
@@ -182,14 +191,14 @@ int LinkedList::removeValueAt(int index) {
             return toReturn;
         } else {
             int count = 0;
-            LinkedNode *last = nullptr;
-            LinkedNode *toRemove = front;
+            LinkedNode<T> *last = nullptr;
+            LinkedNode<T> *toRemove = front;
             while (count != index) {
                 count++;
                 last = toRemove;
                 toRemove = toRemove->getNext();
             }
-            int toReturn = toRemove->getItem();
+            T toReturn = toRemove->getItem();
             last->setNext(toRemove->getNext());
             delete toRemove;
             if (index == size-1) {
@@ -247,38 +256,39 @@ std::string LinkedList::toString() {
 }
 
 /**
- * findMaxIndex, O(n)
- * @return first index of max or -1
- */
-int LinkedList::findMaxIndex() {
-    if (size<1) {
-        return -1;
-    }
-    else {
-        int maxIndex = 0;
-        int currentIndex = 0;
-        LinkedNode* current = front;
-        int maxItem = current->getItem();
-        while (currentIndex < size) {
-            if (current->getItem() > maxItem) {
-                maxIndex = currentIndex;
-                maxItem = current->getItem();
-            }
-            currentIndex++;
-            current = current->getNext();
-        }
-        return maxIndex;
-    }
-}
+// * findMaxIndex, O(n)
+// * @return first index of max or -1
+// */
+//int LinkedList::findMaxIndex() {
+//    if (size<1) {
+//        return -1;
+//    }
+//    else {
+//        int maxIndex = 0;
+//        int currentIndex = 0;
+//        LinkedNode* current = front;
+//        int maxItem = current->getItem();
+//        while (currentIndex < size) {
+//            if (current->getItem() > maxItem) {
+//                maxIndex = currentIndex;
+//                maxItem = current->getItem();
+//            }
+//            currentIndex++;
+//            current = current->getNext();
+//        }
+//        return maxIndex;
+//    }
+//}
 
 /**
  * find, O(n)
  * @param numToFind
  * @return first index of numToFind, or -1 if num is not in list
  */
-int LinkedList::find(int numToFind) {
+template <class T>
+int LinkedList::find(T numToFind) {
     int currentIndex = 0;
-    LinkedNode* current = front;
+    LinkedNode<T>* current = front;
     while (currentIndex < size) {
         if (current->getItem() == numToFind) {
             return currentIndex;
@@ -295,10 +305,11 @@ int LinkedList::find(int numToFind) {
  * @param numToFind
  * @return last index of numToFind, or -1 if num is not in list
  */
-int LinkedList::findLast(int numToFind) {
+template <class T>
+int LinkedList::findLast(T numToFind) {
     int indexOfNum = -1;
     int currentIndex = 0;
-    LinkedNode* current = front;
+    LinkedNode<T>* current = front;
     while (currentIndex < size) {
         if (current->getItem() == numToFind) {
             indexOfNum = currentIndex;

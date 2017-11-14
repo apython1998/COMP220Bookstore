@@ -5,20 +5,21 @@
 #ifndef LINKEDNODE_H
 #define LINKEDNODE_H
 
+template <class T>
 class LinkedNode {
 
 private:
-    int item;
+    T item;
     LinkedNode* next;
 
 public:
-    LinkedNode(int item);
+    LinkedNode(T item);
     LinkedNode(const LinkedNode& nodeToCopy); //only copies item, next is set to nullptr
-    int getItem();
+    T getItem();
     LinkedNode* getNext();
-    void setItem(int newItem);
+    void setItem(T newItem);
     void setNext(LinkedNode* newNext);
 };
 
-
+#include "LinkedNode.inl"
 #endif //LINKEDNODE_H

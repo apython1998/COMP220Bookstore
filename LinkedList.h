@@ -2,18 +2,19 @@
 // Created by Alex Python on 10/31/17.
 //
 
-#ifndef LAB08_LinkedList_H
-#define LAB08_LinkedList_H
+#ifndef LAB08_LINKEDLIST_H
+#define LAB08_LINKEDLIST_H
 
 #include <stdexcept>
 #include "LinkedNode.h"
 #include "List.h"
 
+template <class T>
 class LinkedList : public List {
 private:
     int size;
-    LinkedNode* front;
-    LinkedNode* end;
+    LinkedNode<T>* front;
+    LinkedNode<T>* end;
 
 public:
     //O(1)
@@ -31,7 +32,7 @@ public:
      * @param itemToAdd the item to add to the end of the array
      * @post the list has an additional value in it, at the end
      */
-    void insertAtEnd(int itemToAdd);
+    void insertAtEnd(T itemToAdd);
 
     /**
      * O(1)
@@ -40,7 +41,7 @@ public:
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    void insertAtFront(int itemToAdd);
+    void insertAtFront(T itemToAdd);
 
     /**
      * O(n)
@@ -51,7 +52,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or >currItemCount)
      */
-    void insertAt(int itemToAdd, int index);
+    void insertAt(T itemToAdd, int index);
 
     /**
      * O(n)
@@ -60,7 +61,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int getValueAt(int index);
+    T getValueAt(int index);
 
     /**
      * O(n)
@@ -70,7 +71,7 @@ public:
      * @returns a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int removeValueAt(int index);
+    T removeValueAt(int index);
 
     /**
      * O(1)
@@ -101,26 +102,28 @@ public:
      */
     std::string toString();
 
-    /**
-     * O(n)
-     * finds the largest value in the array
-     * @return the first index of the maximum value, or -1 if size < 1
-     */
-    int findMaxIndex();
+//    /**
+//     * O(n)
+//     * finds the largest value in the array
+//     * @return the first index of the maximum value, or -1 if size < 1
+//     */
+//    int findMaxIndex();
 
     /**
      * O(n)
      * Searches an int array for a certain value
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    int find(int numToFind);
+    int find(T numToFind);
 
     /**
      * O(n)
      * Searches an int array for a certain value
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    int findLast(int numToFind);
+    int findLast(T numToFind);
 };
 
-#endif //LAB08_LinkedList_H
+#include "LinkedList.inl"
+
+#endif //LAB08_LINKEDLIST_H

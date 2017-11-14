@@ -3,28 +3,34 @@
 //
 #include "LinkedNode.h"
 
-LinkedNode::LinkedNode(int item){
+template <class T>
+LinkedNode::LinkedNode(T item){
     this->item = item;
     next = nullptr;
 }
 
+template <class T>
 LinkedNode::LinkedNode(const LinkedNode& nodeToCopy){
     item = nodeToCopy.item;
     next = nullptr;
 }
 
-int LinkedNode::getItem(){
+template <class T>
+T LinkedNode::getItem(){
     return item;
 }
 
+template <class T>
 LinkedNode* LinkedNode::getNext(){
     return next;
 }
 
-void LinkedNode::setItem(int newItem){
+template <class T>
+void LinkedNode::setItem(T newItem){
     item = newItem;
 }
 
+template <class T>
 void LinkedNode::setNext(LinkedNode* newNext){
     next = newNext;
 }
