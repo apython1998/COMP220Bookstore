@@ -6,7 +6,17 @@
 #include "List.h"
 
 
-
+std::string toString(List<int>* ints){
+    std::string arrayStringify = "{";
+    for (int i=0; i<ints->itemCount(); i++) {
+        arrayStringify += std::to_string(ints->getValueAt(i));
+        if (i != ints->itemCount()-1) {
+            arrayStringify += ", ";
+        }
+    }
+    arrayStringify += "}";
+    return arrayStringify;
+}
 void rangeErrorTests(List<int>* list){
     bool errors = false;
     printf("Testing out of range errors:\n");
@@ -60,21 +70,21 @@ void insertAtFrontAndEndIsEmptyClearTester(List<int>* insertAtEndList, List<int>
         insertAtEndList->insertAtEnd(testInputArray[i]);
         insertAtFrontList->insertAtFront(testInputArray[i]);
         if (insertAtEndList->itemCount() != i+1){
-            std::cout << "ERROR: AddToEnd wrong size for:"<< insertAtEndList->toString() << std::endl;
+            std::cout << "ERROR: AddToEnd wrong size for:"<< toString(insertAtEndList) << std::endl;
             errors = true;
         }
         if (insertAtFrontList->itemCount() != i+1){
-            std::cout << "ERROR: AddToFront wrong size for:"<< insertAtFrontList->toString()<<std::endl;
+            std::cout << "ERROR: AddToFront wrong size for:"<< toString(insertAtFrontList)<<std::endl;
             errors = true;
         }
     }
     for (int i=0; i<size; i++){
         if (insertAtEndList->getValueAt(i) != testInputArray[i]){
-            std::cout << "AddToEnd wrong get for:"<< insertAtEndList->toString()<<std::endl;
+            std::cout << "AddToEnd wrong get for:"<< toString(insertAtEndList)<<std::endl;
             errors = true;
         }
         if (insertAtFrontList->getValueAt(size-1-i) != testInputArray[i]){
-            std::cout << "AddToFront wrong size for :"<< insertAtFrontList->toString()<<std::endl;
+            std::cout << "AddToFront wrong size for :"<< toString(insertAtFrontList)<<std::endl;
             errors = true;
         }
     }
@@ -102,12 +112,12 @@ void insertAtFrontAndEndIsEmptyClearTester(List<int>* insertAtEndList, List<int>
         int ans1 = insertAtEndList->removeValueAt(0);
         if (ans1 != testInputArray[i]  || insertAtEndList->itemCount() != size-i-1){
             errors = true;
-            std::cout << "AddToEnd wrong remove: got "<< ans1 << " instead of " << testInputArray[i] << " for array:"<< insertAtEndList->toString()<<std::endl;
+            std::cout << "AddToEnd wrong remove: got "<< ans1 << " instead of " << testInputArray[i] << " for array:"<< toString(insertAtEndList)<<std::endl;
         }
         int ans2 = insertAtFrontList->removeValueAt(0);
         if (ans2 != testInputArray[size-i-1] || insertAtFrontList->itemCount() != size-i-1){
             errors = true;
-            std::cout << "AddToFront wrong remove: got "<< ans2 << " instead of " << testInputArray[i] << " for array:"<< insertAtEndList->toString()<<std::endl;
+            std::cout << "AddToFront wrong remove: got "<< ans2 << " instead of " << testInputArray[i] << " for array:"<< toString(insertAtEndList)<<std::endl;
         }
     }
     if (!errors){
@@ -141,7 +151,7 @@ void insertAtFrontAndEndIsEmptyClearTester(List<int>* tester) {
     for (int i = 10; i < 40; i += 10) {
         if (i != tester->getValueAt((i / 10) - 1)) {
             errorCount++;
-            std::cout << "FAIL: list incorrect, should be {10, 20, 30, 40}, is:" << tester->toString() << "\n";
+            std::cout << "FAIL: list incorrect, should be {10, 20, 30, 40}, is:" << toString(tester) << "\n";
         }
     }
     //std::cout << tester.toString() << std::endl;

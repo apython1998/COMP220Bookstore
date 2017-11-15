@@ -240,25 +240,25 @@ void LinkedList<T>::clearList() {
     size = 0;
 }
 
-/**
- * toString, O(n)
- * @return list as a string
- */
-template <class T>
-std::string LinkedList<T>::toString() {
-    std::string listString = "{";
-    LinkedNode<T>* current = front;
-    for (int i=0; i<size; i++) {
-        if (i != size-1) {
-            listString += std::to_string(current->getItem()) + ", ";
-        } else {
-            listString += std::to_string(current->getItem());
-        }
-        current = current->getNext();
-    }
-    listString += "}";
-    return listString;
-}
+///**
+// * toString, O(n)
+// * @return list as a string
+// */
+//template <class T>
+//std::string LinkedList<T>::toString() {
+//    std::string listString = "{";
+//    LinkedNode<T>* current = front;
+//    for (int i=0; i<size; i++) {
+//        if (i != size-1) {
+//            listString += std::to_string(current->getItem()) + ", ";
+//        } else {
+//            listString += std::to_string(current->getItem());
+//        }
+//        current = current->getNext();
+//    }
+//    listString += "}";
+//    return listString;
+//}
 
 /**
 // * findMaxIndex, O(n)

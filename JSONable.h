@@ -7,7 +7,8 @@
 
 class JSONable{
 public:
+    JSONable(){};
     virtual nlohmann::json toJSON()=0;
-    virtual JSONable(nlohmann::json json)=0;
+    JSONable(nlohmann::json json);
 };
 #endif //COMP220BOOKSTORE_JSONABLE_H

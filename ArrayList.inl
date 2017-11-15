@@ -63,7 +63,7 @@ ArrayList<T>::~ArrayList() {
  */
 template <class T>
 T* copyArray(const T* arrayToCopy, const int size) {
-    int* copy = new int[size];
+    T* copy = new T[size];
     for (int i = 0; i<size; i++) {
         copy[i] = arrayToCopy[i];
     }
@@ -223,25 +223,25 @@ void ArrayList<T>::clearList() {
     currItemCount = 0;
 }
 
-/**
- * creates a string version of an array for easy printing
- * @param arrayPtr
- * @param size
- * @return a string representing the given array in the exact format shown below
- */
-template <class T>
-std::string ArrayList<T>::toString() {
-    //TODO
-    std::string arrayStringify = "{";
-    for (int i=0; i<currItemCount; i++) {
-        arrayStringify += std::to_string(array[i]);
-        if (i != currItemCount-1) {
-            arrayStringify += ", ";
-        }
-    }
-    arrayStringify += "}";
-    return arrayStringify;
-}
+///**
+// * creates a string version of an array for easy printing
+// * @param arrayPtr
+// * @param size
+// * @return a string representing the given array in the exact format shown below
+// */
+//template <class T>
+//std::string ArrayList<T>::toString() {
+//
+//    std::string arrayStringify = "{";
+//    for (int i=0; i<currItemCount; i++) {
+////        arrayStringify += std::to_string(array[i]);
+//        if (i != currItemCount-1) {
+//            arrayStringify += ", ";
+//        }
+//    }
+//    arrayStringify += "}";
+//    return arrayStringify;
+//}
 
 /**
  * Searches an array for a certain value

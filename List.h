@@ -78,7 +78,7 @@ public:
      * @returns a string representing the given list in the exact format shown below
      * {1, 2, 3, 4, 5}
      */
-    virtual std::string toString()=0;
+    //virtual std::string toString()=0;
     
     /**
      * finds the largest value in the array
@@ -90,13 +90,13 @@ public:
      * Searches an int array for a certain value
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    virtual int find(int toFind)=0;
+    virtual int find(T toFind)=0;
 
     /**
      * Searches an int array for a certain value
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    virtual int findLast(int toFind)=0;
+    virtual int findLast(T toFind)=0;
 };
 
 

@@ -94,13 +94,13 @@ public:
      */
     void clearList();
 
-    /**
-     * O(n)
-     * gives a string representation of the current list
-     * @returns a string representing the given list in the exact format shown below
-     * {1, 2, 3, 4, 5}
-     */
-    std::string toString();
+//    /**
+//     * O(n)
+//     * gives a string representation of the current list
+//     * @returns a string representing the given list in the exact format shown below
+//     * {1, 2, 3, 4, 5}
+//     */
+//    std::string toString();
 
 //    /**
 //     * O(n)

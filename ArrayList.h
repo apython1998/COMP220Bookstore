@@ -109,7 +109,7 @@ public:
      * @returns a string representing the given list in the exact format shown below
      * {1, 2, 3, 4, 5}
      */
-    std::string toString();
+    //std::string toString();
 
     /**
      * Searches an array for a certain value
