@@ -6,6 +6,7 @@
 #include "ArrayList.h"
 #include "LinkedList.h"
 #include "ListTests.h"
+#include "QueueTests.h"
 bool DO_TESTS=true;
 
 void testAllForList(List<int>* list1, List<int>* list2){
@@ -27,7 +28,11 @@ void testAllForList(List<int>* list1, List<int>* list2){
     findTester(list1);
     list1->clearList();
 }
-
+void testQueues(){
+    printf("\n*************************\nTESTING QUEUES:\n*************************\n");
+    queueCopyConstructorTest();
+    simpleStackQueueTest();
+}
 void testLists(){
     List<int>* testList1 = new ArrayList<int>();
     List<int>* testList2 = new ArrayList<int>();
@@ -47,13 +52,14 @@ void testLists(){
     testAllForList(testList1, testList2);
     delete testList1;
     delete testList2;
-    printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
 }
 
 void runTests() {
-    std::cout<< "RUNNING TESTING MAIN" ;
+    std::cout<< "HELLO WORL" ;
     if(DO_TESTS){
-
+        testLists();
+        testQueues();
+        printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
     }else{
 
     }
