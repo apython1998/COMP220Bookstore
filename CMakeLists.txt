@@ -3,5 +3,6 @@ project(COMP220Bookstore)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES testMain.cpp bookstoreMain.cpp main.cpp ListTests.cpp)
+set(SOURCE_FILES testMain.cpp bookstoreMain.cpp main.cpp ListTests.cpp QueueTests.cpp)
+
 add_executable(COMP220Bookstore ${SOURCE_FILES})
