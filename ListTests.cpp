@@ -48,13 +48,6 @@ void rangeErrorTests(List<int>* list){
     } catch(std::out_of_range& e) {
         
     }
-    try {
-        //list->(-5);
-        printf("Failed on getting negative index\n");
-        errors = true;
-    } catch(std::out_of_range& e) {
-
-    }
     if (!errors){
         std::cout << "pass"<<std::endl;
     }

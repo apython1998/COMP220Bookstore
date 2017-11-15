@@ -150,8 +150,9 @@ void ArrayList<T>::insertAt(T itemToAdd, int index) {
                 array[i] = array[i-1];
             }
         }
+        currItemCount++;
+        return;
     }
-    currItemCount++;
 }
 
 /**
