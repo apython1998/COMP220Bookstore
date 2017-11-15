@@ -1,0 +1,10 @@
+//
+// Created by Alex Python on 11/15/17.
+//
+
+#ifndef COMP220BOOKSTORE_BOOKSTOREMAIN_H
+#define COMP220BOOKSTORE_BOOKSTOREMAIN_H
+
+void bookstoreMain();
+
+#endif //COMP220BOOKSTORE_BOOKSTOREMAIN_H
