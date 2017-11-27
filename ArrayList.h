@@ -1,5 +1,6 @@
 //
-// Created by Toby Dragon on 9/30/16.
+// Created by Toby Dragon on 10/10/17.
+// Edited by Alex Python on 11/09/17.
 //
 
 #ifndef COMP220_ARRAYLIST_H
