@@ -14,12 +14,12 @@ private:
     LinkedNode* next;
 
 public:
-    LinkedNode(T item);
+    LinkedNode(T item); //constructor
     LinkedNode(const LinkedNode& nodeToCopy); //only copies item, next is set to nullptr
-    T getItem();
-    LinkedNode* getNext();
-    void setItem(T newItem);
-    void setNext(LinkedNode* newNext);
+    T getItem(); //returns item in the node
+    LinkedNode* getNext(); //returns the pointer to next
+    void setItem(T newItem); //sets the item to a new item
+    void setNext(LinkedNode* newNext); //sets next to a pointer given
 };
 
 #include "LinkedNode.inl"
