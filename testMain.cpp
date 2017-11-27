@@ -55,7 +55,6 @@ void testLists(){
 }
 
 void runTests() {
-    std::cout<< "HELLO WORL" ;
     if(DO_TESTS){
         testLists();
         testQueues();
