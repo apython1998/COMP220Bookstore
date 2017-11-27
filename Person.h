@@ -15,6 +15,8 @@ class Person {
     std::string phoneNumber;
     std::string email;
     std::string contactPreference;
+public:
+    Person(const Person& toCopy);
 };
 
 

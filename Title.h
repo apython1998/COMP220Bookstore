@@ -16,7 +16,11 @@ public:
     std::string name;
     int have;
     int want;
-    Queue<Person> waitlist;
+    Queue<Person>* waitlist;
+    
+    Title();
+
+    Title(const Title &toCopy);
 };
 
 

@@ -3,3 +3,10 @@
 //
 
 #include "Person.h"
+
+Person::Person(const Person& toCopy) {
+    name=toCopy.name;
+    email=toCopy.email;
+    phoneNumber=toCopy.phoneNumber;
+    contactPreference=toCopy.contactPreference;
+}
