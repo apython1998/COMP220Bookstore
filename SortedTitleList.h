@@ -5,23 +5,12 @@
 #ifndef COMP220BOOKSTORE_SORTEDTITLELIST_H
 #define COMP220BOOKSTORE_SORTEDTITLELIST_H
 
+#include "Title.h"
+
 class SortedTitleList {
 public:
     /**
-     * Constructor
-     * creates a pointer to an empty ArrayList
-    */
-    virtual SortedTitleList()=0;
-
-    /**
-     * Copy Constructor
-     * shallow copies listToCopy to the ArrayList pointer sortedTitleList
-    */
-    virtual SortedTitleList(const Title listToCopy)=0;
-
-    /**
      * Destructor
-     * frees ArrayList pointer sortedTitleList
     */
     virtual ~SortedTitleList(){};
 

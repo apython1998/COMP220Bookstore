@@ -1,9 +1,11 @@
 //
-// Created by chay on 11/27/2017.
+// Created by chay on 11/28/2017.
 //
 
 #ifndef COMP220BOOKSTORE_ARRAYSORTEDTITLELIST_H
 #define COMP220BOOKSTORE_ARRAYSORTEDTITLELIST_H
+
+#include "SortedTitleList.h"
 
 class ArraySortedTitleList {
 private:

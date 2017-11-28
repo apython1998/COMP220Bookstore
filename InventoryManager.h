@@ -8,7 +8,7 @@
 #include "SortedTitleList.h"
 class InventoryManager{
 private:
-    SortedTitleList titleList;
+    SortedTitleList* titleList;
 public:
     InventoryManager(std::string savefile);
 
