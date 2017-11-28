@@ -10,6 +10,13 @@ class InventoryManager{
 private:
     SortedTitleList titleList;
 public:
+    InventoryManager(std::string savefile);
+
+    /**
+     * Saves the inventory to a savefile
+     * @throws an exception of some sort if the file cannot be created/written/overwritten
+     */
+    void saveOutToFile(std::string savefile);
     /**
      * returns true if title exists
      */
