@@ -10,3 +10,10 @@ Person::Person(const Person& toCopy) {
     phoneNumber=toCopy.phoneNumber;
     contactPreference=toCopy.contactPreference;
 }
+
+Person::Person() {
+    name="";
+    email="";
+    phoneNumber="";
+    contactPreference="";
+}

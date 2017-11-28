@@ -17,6 +17,7 @@ class Person {
     std::string contactPreference;
 public:
     Person(const Person& toCopy);
+    Person();
 };
 
 
