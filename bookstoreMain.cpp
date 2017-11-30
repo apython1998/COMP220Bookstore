@@ -6,6 +6,6 @@
 #include "InventoryManager.h"
 
 void bookstoreMain() {
-    std::cout<< "IN BOOKSTORE MAIN RUN"<< std::endl;
+    //std::cout<< "IN BOOKSTORE MAIN RUN"<< std::endl;
 }
 

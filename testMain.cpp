@@ -7,6 +7,7 @@
 #include "LinkedList.h"
 #include "ListTests.h"
 #include "QueueTests.h"
+#include "UITester.h"
 bool DO_TESTS=true;
 
 void testAllForList(List<int>* list1, List<int>* list2){
@@ -58,6 +59,8 @@ void runTests() {
     if(DO_TESTS){
         testLists();
         testQueues();
+        std::cout << std::endl;
+        testUI();
         printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
     }else{
 
