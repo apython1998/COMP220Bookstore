@@ -2,24 +2,25 @@
 // Created by chay on 11/27/2017.
 //
 
-#ifndef COMP220BOOKSTORE_SORTEDTITLELIST_H
-#define COMP220BOOKSTORE_SORTEDTITLELIST_H
+#ifndef COMP220BOOKSTORE_TITLELIST_H
+#define COMP220BOOKSTORE_TITLELIST_H
 
 #include "Title.h"
+#include "ArrayList.h"
 
-class SortedTitleList {
+class TitleList {
 public:
     /**
      * Destructor
     */
-    virtual ~SortedTitleList(){};
+    virtual ~TitleList(){};
 
     /**
      * finds the location of a Title object in the sortedTitleList using binary search
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    virtual int find(Title titleToFind)=0;
+    virtual Title find(std::string titleToFind)=0;
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position
@@ -28,6 +29,8 @@ public:
      * @post sortedTitleList is in alphabetical order
     */
     virtual void add(Title titleToAdd)=0;
+
+    virtual ArrayList<Title>* getSortedList()=0;
 };
 
-#endif //COMP220BOOKSTORE_SORTEDTITLELIST_H
+#endif //COMP220BOOKSTORE_TITLELIST_H

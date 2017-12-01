@@ -2,41 +2,42 @@
 // Created by chay on 11/28/2017.
 //
 
-#ifndef COMP220BOOKSTORE_ARRAYSORTEDTITLELIST_H
-#define COMP220BOOKSTORE_ARRAYSORTEDTITLELIST_H
+#ifndef COMP220BOOKSTORE_ARRAYTITLELIST_H
+#define COMP220BOOKSTORE_ARRAYTITLELIST_H
 
-#include "SortedTitleList.h"
+#include "ArrayList.h"
+#include "TitleList.h"
 
-class ArraySortedTitleList {
+class ArrayTitleList:public TitleList {
 private:
     //pointer to start of array
-    ArrayList* sortedTitleList;
+    ArrayList<Title>* arrayTitleList;
 
 public:
     /**
      * Constructor
      * creates a pointer to an empty ArrayList
     */
-    SortedTitleList();
+    ArrayTitleList();
 
     /**
      * Copy Constructor
      * shallow copies listToCopy to the ArrayList pointer sortedTitleList
     */
-    SortedTitleList(const ArrayList* listToCopy);
+    ArrayTitleList(const ArrayList<Title>* listToCopy);
 
     /**
      * Destructor
      * frees ArrayList pointer sortedTitleList
     */
-    ~SortedTitleList();
+    ~ArrayTitleList();
 
     /**
      * finds the location of a Title object in the sortedTitleList using binary search
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    int find(Title titleToFind);
+    Title find(std::string titleToFind);
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position
@@ -45,6 +46,9 @@ public:
      * @post sortedTitleList is in alphabetical order
     */
     void add(Title titleToAdd);
+
+    ArrayList<Title>* getSortedList();
+
 };
 
-#endif //COMP220BOOKSTORE_ARRAYSORTEDTITLELIST_H
+#endif //COMP220BOOKSTORE_ARRAYTITLELIST_H
