@@ -6,6 +6,8 @@
 #include "InventoryManager.h"
 
 void bookstoreMain() {
-    //std::cout<< "IN BOOKSTORE MAIN RUN"<< std::endl;
+    InventoryManager* systemInventoryManager = new InventoryManager("filename.JSON");
+    UI* systemUI = new UI(systemInventoryManager);
+    systemUI->run();
 }
 
