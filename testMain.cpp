@@ -8,6 +8,8 @@
 #include "ListTests.h"
 #include "QueueTests.h"
 #include "UITester.h"
+#include "ArrayTitleList.h"
+
 bool DO_TESTS=true;
 
 void testAllForList(List<int>* list1, List<int>* list2){
@@ -55,10 +57,31 @@ void testLists(){
     delete testList2;
 }
 
+void testArrayTitleList() {
+    printf("\n*************************\nTESTING ArrayTitleList:\n*************************\n");
+    ArrayTitleList testList = ArrayTitleList();
+    Title bookA = Title();
+    Title bookB = Title();
+    Title bookC = Title();
+    bookA.name = "bookA";
+    bookB.name = "bookB";
+    bookC.name = "bookC";
+
+    testList.add(bookB);
+    testList.add(bookC);
+    testList.add(bookA);
+
+    std::cout << "Following numbers should be 0 1 2, if they are not it FAILED" << std::endl;
+    std::cout << testList.find("bookA") << std::endl;
+    std::cout << testList.find("bookB") << std::endl;
+    std::cout << testList.find("bookC") << std::endl;
+}
+
 void runTests() {
     if(DO_TESTS){
         testLists();
         testQueues();
+        testArrayTitleList();
         std::cout << std::endl;
         testUI();
         printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");

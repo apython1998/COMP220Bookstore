@@ -5,10 +5,10 @@
 #ifndef COMP220BOOKSTORE_INVENTORYMANAGER_H
 #define COMP220BOOKSTORE_INVENTORYMANAGER_H
 
-#include "SortedTitleList.h"
+#include "ArrayTitleList.h"
 class InventoryManager{
 private:
-    SortedTitleList* titleList;
+    ArrayTitleList* titleList;
 public:
     InventoryManager(std::string savefile);
 

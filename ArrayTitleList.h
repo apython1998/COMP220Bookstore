@@ -37,7 +37,7 @@ public:
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    Title find(std::string titleToFind);
+    int find(std::string titleToFind);
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position

@@ -20,7 +20,7 @@ public:
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    virtual Title find(std::string titleToFind)=0;
+    virtual int find(std::string titleToFind)=0;
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position
