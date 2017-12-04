@@ -47,6 +47,14 @@ public:
     virtual T getValueAt(int index)=0;
 
     /**
+     * gets a value from the list
+     * @param index the location from which to get the value
+     * @returns a pointer to the item at index
+     * @throws out_of_range exception if index is invalid
+     */
+    virtual T* getPointerAt(int index)=0;
+
+    /**
      * removes the item at index from the list, and returns a copy of that item
      * @param index the location from which to get the value
      * @post the item at index is removed from the list, everything else is shifted down one

@@ -4,7 +4,7 @@
 #include <iostream>
 #include "List.h"
 #include "ArrayList.h"
-#include "LinkedList.h"
+//#include "LinkedList.h"
 #include "ListTests.h"
 #include "QueueTests.h"
 #include "UITester.h"
@@ -49,12 +49,12 @@ void testLists(){
     delete testList2;
 
 
-    testList1 = new LinkedList<int>();
-    testList2 = new LinkedList<int>();
-    printf("\n*************************\nTESTING WITH LINKED LIST:\n*************************\n");
-    testAllForList(testList1, testList2);
-    delete testList1;
-    delete testList2;
+//    testList1 = new LinkedList<int>();
+//    testList2 = new LinkedList<int>();
+//    printf("\n*************************\nTESTING WITH LINKED LIST:\n*************************\n");
+//    testAllForList(testList1, testList2);
+//    delete testList1;
+//    delete testList2;
 }
 
 void testArrayTitleList() {
