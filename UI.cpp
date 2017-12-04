@@ -36,6 +36,7 @@ int getNumberFromUser(){
         std::cin >> userInputNumber;
     }
     while (userInputNumber < 0) {
+        std::cout<< "\nError: Please Re-Enter a Number: ";
         std::cin >> userInputNumber;
         while (std::cin.fail()) {
             std::cout<< "\nError: Please Re-Enter a Number: ";
@@ -181,7 +182,8 @@ void UI::run() {
             std::cout << "\nPlease Enter a Title: ";
             std::string title = ::getStringFromUser();
             if (systemInventory->checkIfTitleExists(title)) {
-                if (!systemInventory->sell(title)) {
+                bool didSell = systemInventory->sell(title);
+                if (didSell == false) {
                     std::cout << "\nPlease Enter Your Name: ";
                     std::string name = ::getStringFromUser();
                     std::cout << "\nPlease Enter Your Email: ";
@@ -206,7 +208,29 @@ void UI::run() {
                     systemInventory->addToWaitlist(title, name, email, phoneNumber, preferredMethodString);
                 }
             } else {
-                //TODO
+                systemInventory->addTitle(title, 0, 1);
+                std::cout << "\nPlease Enter Your Name: ";
+                std::string name = ::getStringFromUser();
+                std::cout << "\nPlease Enter Your Email: ";
+                std::string email = ::getStringFromUser();
+                std::cout << "\nPlease Enter Your Phone Number: ";
+                std::string phoneNumber = ::getPhoneNumberFromUser();
+                std::cout << "\nWhat is Your Preferred Contact Method?";
+                std::cout << "\nPlease Enter (1) for Call, (2) for Text, or (3) for Email: ";
+                int preferredMethod = ::getNumberFromUser();
+                while (preferredMethod != 1 && preferredMethod != 2 && preferredMethod != 3) {
+                    std::cout << "\nInvalid Contact Method. Please Re-Enter Your Preferred Contact Method: ";
+                    preferredMethod = ::getNumberFromUser();
+                }
+                std::string preferredMethodString;
+                if (preferredMethod == 1) {
+                    preferredMethodString = "Call";
+                } else if (preferredMethod == 2) {
+                    preferredMethodString = "Text";
+                } else if (preferredMethod == 3) {
+                    preferredMethodString = "Email";
+                }
+                systemInventory->addToWaitlist(title, name, email, phoneNumber, preferredMethodString);
             }
         } else if (command == "o") { //calls the create Order function
             systemInventory->createBulkOrder("orderFile");
