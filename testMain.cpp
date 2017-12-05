@@ -63,18 +63,32 @@ void testArrayTitleList() {
     Title bookA = Title();
     Title bookB = Title();
     Title bookC = Title();
+    Title bookD = Title();
+    Title bookE = Title();
     bookA.name = "bookA";
     bookB.name = "bookB";
     bookC.name = "bookC";
+    bookD.name = "bookD";
+    bookE.name = "bookE";
 
-    testList.add(bookB);
+    testList.add(bookA);
     testList.add(bookC);
+    testList.add(bookE);
+    testList.add(bookD);
+    testList.add(bookB);
     testList.add(bookA);
 
-    std::cout << "Following numbers should be 0 1 2, if they are not it FAILED" << std::endl;
-    std::cout << testList.find("bookA") << std::endl;
-    std::cout << testList.find("bookB") << std::endl;
-    std::cout << testList.find("bookC") << std::endl;
+    std::cout << "Following numbers should be -1 -1 -1 -1 -1 followed by the book names, if they are not it FAILED" << std::endl;
+    std::cout << testList.findLocation("bookA") << std::endl;
+    std::cout << testList.findLocation("bookB") << std::endl;
+    std::cout << testList.findLocation("bookC") << std::endl;
+    std::cout << testList.findLocation("bookD") << std::endl;
+    std::cout << testList.findLocation("bookE") << std::endl;
+    std::cout << testList.find("bookA")->name << std::endl;
+    std::cout << testList.find("bookB")->name << std::endl;
+    std::cout << testList.find("bookC")->name << std::endl;
+    std::cout << testList.find("bookD")->name << std::endl;
+    std::cout << testList.find("bookE")->name << std::endl;
 }
 
 void runTests() {

@@ -29,65 +29,93 @@ ArrayTitleList::~ArrayTitleList() {
     delete arrayTitleList;
 }
 
-/**
- * adds the Title object to the sortedTitleList in its alphabetical position
- * @param titleToAdd the Title to add
- * @throws illegal_argument exception if Title already exists in sortedTitleList
- * @post sortedTitleList is in alphabetical order
-*/
 void ArrayTitleList::add(Title titleToAdd) {
-    //std::cout << "Finding Title: " << titleToAdd.name << std::endl;
-    int addAtIndex = find(titleToAdd.name);
+    int addAtIndex = findLocation(titleToAdd.name);
 
-    //std::cout << "Added Title At Index: " << addAtIndex << std::endl;
-    arrayTitleList->insertAt(titleToAdd, addAtIndex);
-}
 
-int binFind(ArrayList<Title>* arrayTitleList, const std::string titleToFind, const int start, const int size, const int PTA) {
-    int middle = (start + size) / 2;
-    std::string titleAtMiddle = arrayTitleList->getValueAt(middle).name;
-    if (start <= size) {
-        if (titleToFind == titleAtMiddle){
-            return middle;
-        }
-        else if (titleToFind < titleAtMiddle) {
-            return binFind(arrayTitleList, titleToFind, start, middle-1, -1);
-        }
-        else {
-            return binFind(arrayTitleList, titleToFind, middle+1, start, 1);
-        }
+    if (addAtIndex != -1) {
+        //std::cout << "Added " << titleToAdd.name << " At Index: " << addAtIndex << std::endl;
+        arrayTitleList->insertAt(titleToAdd, addAtIndex);
     }
-    //PTA keeps track of the position that titleToFind belongs in regard to the last title it was compared to
-    return middle+PTA;
 }
 
-int binFind(ArrayList<Title>* arrayTitleList, const int size, const std::string titleToFind) {
-    return binFind(arrayTitleList, titleToFind, 0, size, 0);
+Title* binarySearch(ArrayList<Title>* arrayTitleList, const int l, const int r, const std::string titleToFind) {
+    if (r >= l) {
+        int mid = l + (r - l)/2;
+        std::string titleAtMid = arrayTitleList->getValueAt(mid).name;
+
+        // If the element is present at the middle itself
+        if (titleAtMid == titleToFind)  return arrayTitleList->getPointerAt(mid);
+
+        // If element is smaller than mid, then it can only be present
+        // in left subarray
+        if (titleAtMid > titleToFind) return binarySearch(arrayTitleList, l, mid-1, titleToFind);
+
+        // Else the element can only be present in right subarray
+        return binarySearch(arrayTitleList, mid+1, r, titleToFind);
+    }
+
+    // We reach here when element is not present in array
+    return nullptr;
 }
 
-/**
- * finds the location of a Title object in the sortedTitleList using binary search
- * @param titleToFind the Title to find
- * @returns index of Title (-1 if it doesn't exist)
-*/
-int ArrayTitleList::find(std::string titleToFind) {
+Title* binarySearch(ArrayList<Title>* arrayTitleList, const int size, const std::string titleToFind) {
+    return binarySearch(arrayTitleList, 0, size-1, titleToFind);
+}
+
+Title* ArrayTitleList::find(const std::string titleToFind) {
+    if (arrayTitleList->isEmpty()) {
+        return nullptr;
+    }
+    else {
+        Title* title = binarySearch(arrayTitleList, arrayTitleList->itemCount(), titleToFind);
+        return title;
+    }
+}
+
+int binarySearchInt(ArrayList<Title>* arrayTitleList, const int l, const int r, const std::string titleToFind) {
+    if (r >= l) {
+        int mid = l + (r - l)/2;
+        std::string titleAtMid = arrayTitleList->getValueAt(mid).name;
+
+        // If the element is present at the middle itself
+        if (titleAtMid == titleToFind)  return -1;
+
+        // If element is smaller than mid, then it can only be present
+        // in left subarray
+        if (titleAtMid > titleToFind) return binarySearchInt(arrayTitleList, l, mid-1, titleToFind);
+
+        // Else the element can only be present in right subarray
+        return binarySearchInt(arrayTitleList, mid+1, r, titleToFind);
+    }
+
+    // We reach here when element is not present in array
+    return l;
+}
+
+int binarySearchInt(ArrayList<Title>* arrayTitleList, const int size, const std::string titleToFind) {
+    return binarySearchInt(arrayTitleList, 0, size-1, titleToFind);
+}
+
+int ArrayTitleList::findLocation(std::string titleToFind) {
     if (arrayTitleList->isEmpty()) {
         return 0;
     }
     else {
-        int index = binFind(arrayTitleList, arrayTitleList->itemCount(), titleToFind);
-
-        //This fixes an issue when the binfind says we should add at -1 which really just means the first index
-        if (index == -1) {
-            return 0;
-        }
-        return index;
+        return binarySearchInt(arrayTitleList, arrayTitleList->itemCount(), titleToFind);
     }
 }
 
 ArrayList<Title>* ArrayTitleList::getSortedList() {
     return arrayTitleList;
 }
+
+
+
+
+
+
+
 
 //It made me do this for comparing Title objects together.
 bool operator == (const Title t1, const Title t2) {
