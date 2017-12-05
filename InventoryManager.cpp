@@ -24,7 +24,7 @@ bool InventoryManager::checkIfTitleExists(std::string title) {
 }
 
 void InventoryManager::listInventory() {
-    std::cout << "Check out this list:\n1) cube\n2) sphere\n3) torus\n4) the dreaded cone"<< std::endl;
+    std::cout << "Check out this list:\n1) Book 1\n2) Book 2\n3) Book 3\n4) Book 4"<< std::endl;
     //TODO
 
 }
@@ -49,13 +49,13 @@ InventoryManager::addToWaitlist(std::string title, std::string personName, std::
 }
 
 bool InventoryManager::sell(std::string title) {
-    std::cout << "here, sell book"<< std::endl;
+    std::cout << "selling book: " << title << std::endl;
     //TODO
     return false;
 }
 
 void InventoryManager::addTitle(std::string title, int have, int want) {
-    std::cout << "adding the books wowowowo" << std::endl;
+    std::cout << "adding the book: " << title <<  std::endl;
     //TODO
 }
 
@@ -66,13 +66,13 @@ bool InventoryManager::modifyWantValue(std::string title, int newWant) {
 }
 
 void InventoryManager::createBulkOrder(std::string filename) {
-    std::cout << "Pretending to save to "<<filename<< std::endl;
+    std::cout << "Will save to "<<filename<< std::endl;
     //TODO
 
 }
 
 void InventoryManager::loadDelivery(std::string filename) {
-    std::cout << "Pretending to load from "<<filename<< std::endl;
+    std::cout << "Will load from "<<filename<< std::endl;
     //TODO
 
 }
