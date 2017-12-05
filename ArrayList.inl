@@ -171,6 +171,21 @@ T ArrayList<T>::getValueAt(int index) {
 }
 
 /**
+ * gets a value from the list
+ * @param index the location from which to get the value
+ * @returns a pointer to the item at index
+ * @throws out_of_range exception if index is invalid
+ */
+template <class T>
+T* ArrayList<T>::getPointerAt(int index) {
+    if (index<0 || index>= currItemCount) {
+        throw std::out_of_range("Index Out of Bounds");
+    } else {
+        return &array[index];
+    }
+}
+
+/**
  * removes the item at index from the list, and returns a copy of that item
  * @param index the location from which to get the value
  * @post the item at index is removed from the list, everything else is shifted down one

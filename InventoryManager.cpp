@@ -79,6 +79,10 @@ void InventoryManager::loadDelivery(std::string filename) {
 
 void InventoryManager::createReturnInvoice(std::string filename) {
     std::cout << "Pretending to save to "<<filename<< std::endl;
+    auto list=titleList->getSortedList();
+    for(int i=0;i<list->itemCount();i++){
+
+    }
     //TODO
 
 }
