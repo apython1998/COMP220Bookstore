@@ -27,6 +27,7 @@ UI::~UI() {
  * @return
  */
 int getNumberFromUser(){
+    std::cin.clear();
     int userInputNumber;
     std::cin >> userInputNumber;
     while (std::cin.fail()) {
@@ -49,15 +50,16 @@ int getNumberFromUser(){
 }
 
 std::string getPhoneNumberFromUser() {
+    std::cin.clear();
     bool isValid = false;
     std::string phoneNumber;
     while (!isValid) {
-        std::cin >> phoneNumber;
+        std::getline(std::cin, phoneNumber);
         while (std::cin.fail()) {
             std::cout << "\nError: Invalid Input. Please Re-Enter Your Phone Number: ";
             std::cin.clear();
             std::cin.ignore(256, '\n');
-            std::cin >> phoneNumber;
+            std::getline(std::cin, phoneNumber);
         }
         if (phoneNumber.length() == 10) {
             for (int i=0; i<=9; i++) {
@@ -89,12 +91,14 @@ std::string getPhoneNumberFromUser() {
  * @return
  */
 std::string getStringFromUser() {
+    std::cin.clear();
     std::string userInputString;
-    std::cin >> userInputString;
+    std::getline(std::cin, userInputString);
     while (std::cin.fail()) {
         std::cout<< "\nError: Invalid Input. Please Re-Enter a String: ";
         std::cin.clear();
-        std::cin >> userInputString;
+        std::cin.ignore(256, '\n');
+        std::getline(std::cin, userInputString);
     }
     return userInputString;
 }
@@ -104,12 +108,14 @@ std::string getStringFromUser() {
  * @return
  */
 std::string getCommandFromUser() {
+    std::cin.clear();
     std::string command;
-    std::cin >> command;
+    std::getline(std::cin, command);
     while (std::cin.fail()) {
         std::cout<< "\nError: Invalid Input. Please Re-Enter a Command: ";
         std::cin.clear();
-        std::cin >> command;
+        std::cin.ignore(256, '\n');
+        std::getline(std::cin, command);
     }
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     return command;
