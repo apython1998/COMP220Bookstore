@@ -53,12 +53,11 @@ std::string getPhoneNumberFromUser() {
     std::cin.clear();
     bool isValid = false;
     std::string phoneNumber;
+    std::getline(std::cin, phoneNumber);
     while (!isValid) {
-        std::getline(std::cin, phoneNumber);
         while (std::cin.fail()) {
             std::cout << "\nError: Invalid Input. Please Re-Enter Your Phone Number: ";
             std::cin.clear();
-            std::cin.ignore(256, '\n');
             std::getline(std::cin, phoneNumber);
         }
         if (phoneNumber.length() == 10) {
@@ -77,7 +76,7 @@ std::string getPhoneNumberFromUser() {
         if (!isValid) {
             phoneNumber = "";
             std::cin.clear();
-            std::cin.ignore(256, '\n');
+            std::getline(std::cin, phoneNumber);
         }
     }
     phoneNumber.insert(0, "(");
