@@ -37,6 +37,8 @@ public:
      * Returns true if the waitlist is not empty
      */
     bool waitlistHasNext();
+
+    void printWaitlist();
 };
 
 

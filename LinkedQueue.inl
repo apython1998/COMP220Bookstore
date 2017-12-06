@@ -115,3 +115,7 @@ template <class T>
 bool LinkedQueue<T>::isEmpty(){
     return front == nullptr;
 }
+template <class T>
+typename Queue<T>::QueueIterator* LinkedQueue<T>::getIterator(){
+    return new LinkedQueueIterator(front);
+}

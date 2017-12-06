@@ -30,8 +30,26 @@ bool InventoryManager::checkIfTitleExists(const std::string& title) {
 void InventoryManager::listInventory() {
     //std::cout << "Check out this list:\n1) Book 1\n2) Book 2\n3) Book 3\n4) Book 4"<< std::endl;
     ArrayList<Title>* titles=titleList->getSortedList();
+    std::cout << "-------------------------------------------------------------"<<std::endl;
+    std::cout.width(40);
+    std::cout << std::left<<"Name";
+    std::cout.width(6);
+    std::cout << std::left << "Have";
+    std::cout.width(6);
+    std::cout << std::left << "Want";
+    std::cout.width(6);
+    std::cout << std::left << "Waitlist?" << std::endl;
+    std::cout << "-------------------------------------------------------------"<<std::endl;
     for(int i=0;i<titles->itemCount();i++){
-        std::cout << titles->getPointerAt(i)->name<< std::endl;
+        Title* t=titles->getPointerAt(i);
+        std::cout.width(40);
+        std::cout << std::left<<t->name;
+        std::cout.width(6);
+        std::cout << std::left << t->have;
+        std::cout.width(6);
+        std::cout << std::left << t->want;
+        std::cout.width(6);
+        std::cout << std::left << (t->waitlistHasNext()?"yes":"no") << std::endl;
     }
     //TODO
 
@@ -39,9 +57,9 @@ void InventoryManager::listInventory() {
 
 void InventoryManager::inquireTitle(std::string title) {
     Title* t = titleList->find(title);
-    std::cout << "Title: "<<t->name<<"\nhave: "<<t->have<<"\nwant: "<<t->want<< std::endl;
-    //TODO
-
+    std::cout << "-----------------\nTitle: "<<t->name<<"\n-----------------\n\thave: "<<t->have<<"\n\twant: "<<t->want<< std::endl;
+    if(t->waitlistHasNext())t->printWaitlist();
+    else std::cout << "\tno waitlist"<< std::endl;
 }
 
 void InventoryManager::inquireTitleOneLine(std::string title) {
