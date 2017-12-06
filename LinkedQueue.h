@@ -21,9 +21,25 @@ class LinkedQueue : public Queue<T> {
 private:
     LinkedNode<T>* front;
     LinkedNode<T>* end;
-
 public:
-    
+    class LinkedQueueIterator: public Queue<T>::QueueIterator{
+    public:
+        // Explicit choice to not include a destructor
+        // since the iterator does not own the linkedlist
+        LinkedNode<T>* pos;
+        bool hasNext(){
+            return pos!=nullptr;
+        }
+        T getNext(){
+            T t = pos->getItem();
+            pos=pos->getNext();
+            return t;
+        }
+        LinkedQueueIterator(LinkedNode<T>* pos){
+            this->pos=pos;
+        }
+    };
+
     //Creates an empty queue
     LinkedQueue();
 
@@ -45,6 +61,7 @@ public:
     //returns true if the queue has no items, false otherwise
     bool isEmpty();
 
+    typename Queue<T>::QueueIterator* getIterator();
 };
 
 #include "LinkedQueue.inl"

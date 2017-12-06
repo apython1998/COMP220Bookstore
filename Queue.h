@@ -29,6 +29,13 @@ public:
     //returns true if the queue has no items, false otherwise
     virtual bool isEmpty()=0;
 
+    class QueueIterator{
+    public:
+        virtual bool hasNext()=0;
+        virtual T getNext()=0;
+    };
+
+    virtual Queue<T>::QueueIterator* getIterator()=0;
 };
 
 #endif //STACKSANDQUEUES_QUEUE_H

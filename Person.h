@@ -11,11 +11,11 @@
  * Basic class representing a person (that would be on a waitlist).
  */
 class Person {
+public:
     std::string name;
     std::string phoneNumber;
     std::string email;
     std::string contactPreference;
-public:
     Person(const Person& toCopy);
     Person();
 
