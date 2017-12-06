@@ -19,14 +19,14 @@ public:
      * @param name the name of the title to find
      * @returns pointer to title, or nullptr if not found
     */
-    virtual Title* find(std::string name)=0;
+    virtual Title* find(const std::string& titleToFind)=0;
 
     /**
     * finds the location of a Title object in the sortedTitleList using binary search
     * @param titleToFind the Title to find
     * @returns index of Title (-1 if it doesn't exist)
     */
-    virtual int findLocation(std::string titleToFind)=0;
+    virtual int findLocation(const std::string& titleToFind)=0;
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position
@@ -36,6 +36,9 @@ public:
     */
     virtual void add(Title titleToAdd)=0;
 
+    /**
+     * @return a pointer to an ArrayList of the titles in order by Title.name
+     */
     virtual ArrayList<Title>* getSortedList()=0;
 
 };

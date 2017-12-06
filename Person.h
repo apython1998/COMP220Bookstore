@@ -18,6 +18,9 @@ class Person {
 public:
     Person(const Person& toCopy);
     Person();
+
+    Person(const std::string &name, const std::string &phoneNumber, const std::string &email,
+           const std::string &contactPreference);
 };
 
 

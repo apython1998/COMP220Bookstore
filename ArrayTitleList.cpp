@@ -63,7 +63,7 @@ Title* binarySearch(ArrayList<Title>* arrayTitleList, const int size, const std:
     return binarySearch(arrayTitleList, 0, size-1, titleToFind);
 }
 
-Title* ArrayTitleList::find(const std::string titleToFind) {
+Title* ArrayTitleList::find(const std::string& titleToFind) {
     if (arrayTitleList->isEmpty()) {
         return nullptr;
     }
@@ -97,7 +97,7 @@ int binarySearchInt(ArrayList<Title>* arrayTitleList, const int size, const std:
     return binarySearchInt(arrayTitleList, 0, size-1, titleToFind);
 }
 
-int ArrayTitleList::findLocation(std::string titleToFind) {
+int ArrayTitleList::findLocation(const std::string& titleToFind) {
     if (arrayTitleList->isEmpty()) {
         return 0;
     }
@@ -120,10 +120,5 @@ ArrayList<Title>* ArrayTitleList::getSortedList() {
 //It made me do this for comparing Title objects together.
 bool operator == (const Title t1, const Title t2) {
     //checks if t1 is greater and returns true, otherwise returns false when it is less than or equal
-    if( t2.name < t1.name){
-        return true;
-    }
-    else {
-        return false;
-    }
+    return t2.name < t1.name;
 }

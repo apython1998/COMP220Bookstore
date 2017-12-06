@@ -59,7 +59,7 @@ void testLists(){
 
 void testArrayTitleList() {
     printf("\n*************************\nTESTING ArrayTitleList:\n*************************\n");
-    TitleList testList = ArrayTitleList();
+    TitleList* testList = new ArrayTitleList();
     Title bookA = Title();
     Title bookB = Title();
     Title bookC = Title();
@@ -71,24 +71,24 @@ void testArrayTitleList() {
     bookD.name = "bookD";
     bookE.name = "bookE";
 
-    testList.add(bookA);
-    testList.add(bookC);
-    testList.add(bookE);
-    testList.add(bookD);
-    testList.add(bookB);
-    testList.add(bookA);
+    testList->add(bookA);
+    testList->add(bookC);
+    testList->add(bookE);
+    testList->add(bookD);
+    testList->add(bookB);
+    testList->add(bookA);
 
     std::cout << "Following numbers should be -1 -1 -1 -1 -1 followed by the book names, if they are not it FAILED" << std::endl;
-    std::cout << testList.findLocation("bookA") << std::endl;
-    std::cout << testList.findLocation("bookB") << std::endl;
-    std::cout << testList.findLocation("bookC") << std::endl;
-    std::cout << testList.findLocation("bookD") << std::endl;
-    std::cout << testList.findLocation("bookE") << std::endl;
-    std::cout << testList.find("bookA")->name << std::endl;
-    std::cout << testList.find("bookB")->name << std::endl;
-    std::cout << testList.find("bookC")->name << std::endl;
-    std::cout << testList.find("bookD")->name << std::endl;
-    std::cout << testList.find("bookE")->name << std::endl;
+    std::cout << testList->findLocation("bookA") << std::endl;
+    std::cout << testList->findLocation("bookB") << std::endl;
+    std::cout << testList->findLocation("bookC") << std::endl;
+    std::cout << testList->findLocation("bookD") << std::endl;
+    std::cout << testList->findLocation("bookE") << std::endl;
+    std::cout << testList->find("bookA")->name << std::endl;
+    std::cout << testList->find("bookB")->name << std::endl;
+    std::cout << testList->find("bookC")->name << std::endl;
+    std::cout << testList->find("bookD")->name << std::endl;
+    std::cout << testList->find("bookE")->name << std::endl;
 }
 
 void runTests() {

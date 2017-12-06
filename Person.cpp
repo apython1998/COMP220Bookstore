@@ -17,3 +17,7 @@ Person::Person() {
     phoneNumber="";
     contactPreference="";
 }
+
+Person::Person(const std::string &name, const std::string &phoneNumber, const std::string &email,
+               const std::string &contactPreference) : name(name), phoneNumber(phoneNumber), email(email),
+                                                       contactPreference(contactPreference) {}

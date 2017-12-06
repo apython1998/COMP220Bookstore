@@ -24,27 +24,27 @@ public:
      * Copy Constructor
      * shallow copies listToCopy to the ArrayList pointer sortedTitleList
     */
-    ArrayTitleList(const ArrayList<Title>* listToCopy);
+    explicit ArrayTitleList(const ArrayList<Title>* listToCopy);
 
     /**
      * Destructor
      * frees ArrayList pointer sortedTitleList
     */
-    ~ArrayTitleList();
+    ~ArrayTitleList() override;
 
     /**
      * finds the location of a Title object in the sortedTitleList using binary search
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    Title * find(std::string titleToFind);
+    Title* find(const std::string& titleToFind) override;
 
     /**
      * finds the location of a Title object in the sortedTitleList using binary search
      * @param titleToFind the Title to find
      * @returns index of Title (-1 if it doesn't exist)
     */
-    int findLocation(std::string titleToFind);
+    int findLocation(const std::string& titleToFind) override;
 
     /**
      * adds the Title object to the sortedTitleList in its alphabetical position
@@ -52,9 +52,9 @@ public:
      * @throws illegal_argument exception if Title already exists in sortedTitleList
      * @post sortedTitleList is in alphabetical order
     */
-    void add(Title titleToAdd);
+    void add(Title titleToAdd) override;
 
-    ArrayList<Title>* getSortedList();
+    ArrayList<Title>* getSortedList() override;
 
 };
 

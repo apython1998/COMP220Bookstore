@@ -166,6 +166,7 @@ void UI::run() {
             std::cout << "\nPlease Enter a Title: ";
             std::string title = ::getStringFromUser();
             if (systemInventory->checkIfTitleExists(title)) {
+                std::cout << "Title already exists:"<< std::endl;
                 systemInventory->inquireTitleOneLine(title);
             } else {
                 std::cout << "\nHow many do you have: ";
@@ -190,6 +191,7 @@ void UI::run() {
             if (systemInventory->checkIfTitleExists(title)) {
                 bool didSell = systemInventory->sell(title);
                 if (didSell == false) {
+                    std::cout << "\nBook is out of stock.";
                     std::cout << "\nPlease Enter Your Name: ";
                     std::string name = ::getStringFromUser();
                     std::cout << "\nPlease Enter Your Email: ";
