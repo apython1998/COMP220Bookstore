@@ -22,6 +22,13 @@ public:
     virtual Title* find(std::string name)=0;
 
     /**
+    * finds the location of a Title object in the sortedTitleList using binary search
+    * @param titleToFind the Title to find
+    * @returns index of Title (-1 if it doesn't exist)
+    */
+    virtual int findLocation(std::string titleToFind)=0;
+
+    /**
      * adds the Title object to the sortedTitleList in its alphabetical position
      * @param titleToAdd the Title to add
      * @throws illegal_argument exception if Title already exists in sortedTitleList

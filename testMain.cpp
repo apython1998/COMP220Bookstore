@@ -59,7 +59,7 @@ void testLists(){
 
 void testArrayTitleList() {
     printf("\n*************************\nTESTING ArrayTitleList:\n*************************\n");
-    ArrayTitleList testList = ArrayTitleList();
+    TitleList testList = ArrayTitleList();
     Title bookA = Title();
     Title bookB = Title();
     Title bookC = Title();
