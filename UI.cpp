@@ -42,10 +42,11 @@ int getNumberFromUser(){
         while (std::cin.fail()) {
             std::cout<< "\nError: Please Re-Enter a Number: ";
             std::cin.clear();
-            std::cin.ignore(256, '\n');
             std::cin >> userInputNumber;
         }
     }
+    std::cin.clear();
+    std::cin.ignore(256, '\n');
     return userInputNumber;
 }
 
@@ -82,6 +83,7 @@ std::string getPhoneNumberFromUser() {
     phoneNumber.insert(0, "(");
     phoneNumber.insert(4, ")");
     phoneNumber.insert(8, "-");
+    std::cin.clear();
     return phoneNumber;
 }
 
@@ -96,9 +98,9 @@ std::string getStringFromUser() {
     while (std::cin.fail()) {
         std::cout<< "\nError: Invalid Input. Please Re-Enter a String: ";
         std::cin.clear();
-        std::cin.ignore(256, '\n');
         std::getline(std::cin, userInputString);
     }
+    std::cin.clear();
     return userInputString;
 }
 
@@ -113,9 +115,9 @@ std::string getCommandFromUser() {
     while (std::cin.fail()) {
         std::cout<< "\nError: Invalid Input. Please Re-Enter a Command: ";
         std::cin.clear();
-        std::cin.ignore(256, '\n');
         std::getline(std::cin, command);
     }
+    std::cin.clear();
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     return command;
 }
@@ -240,18 +242,19 @@ void UI::run() {
                 systemInventory->addToWaitlist(title, name, email, phoneNumber, preferredMethodString);
             }
         } else if (command == "o") { //calls the create Order function
-            systemInventory->createBulkOrder("orderFile");
+            systemInventory->createBulkOrder("orderFile.JSON");
         } else if (command == "d") { //calls the load delivery function
-            systemInventory->loadDelivery("deliveryFile");
+            systemInventory->loadDelivery("deliveryFile.JSON");
         } else if (command == "r") { //calls the create return function
-            systemInventory->createReturnInvoice("returnFile");
+            systemInventory->createReturnInvoice("returnFile.JSON");
         }
         std::cout<< "\nEnter a Command (Press 'H' for Help): ";
+        command = "";
         command = ::getCommandFromUser();
         while ((command != "h") && (command != "q") && (command != "i") && (command != "l") && (command != "a") && (command != "m") && (command != "s") && (command != "o") && (command != "d") && (command != "r")) {
             std::cout << "\nInvalid Command. Please Re-Enter a Command: ";
             command = ::getCommandFromUser();
         }
     }
-    systemInventory->saveOutToFile("inventoryFile");
+    systemInventory->saveOutToFile("inventoryFile.JSON");
 }
