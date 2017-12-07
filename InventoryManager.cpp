@@ -157,30 +157,44 @@ void InventoryManager::loadDelivery(std::string filename) {
     std::ifstream infile (filename);
     if (!infile.is_open()){
         std::cout << "ERROR: cannot open file "<<filename<<" for reading"<< std::endl;
+        return;
     }
     nlohmann::json loaded;
     infile>>loaded;
     infile.close();
-    for(nlohmann::json::iterator it = loaded.begin(); it != loaded.end(); ++it) {
-        Title tmp=Title(*it);
-        printTitle(&tmp);
+    for (auto &it : loaded) {
+        try{
+            Title tmp=Title(it);
+            std::cout << "Loaded"<< std::endl;
+            printTitleOneLine(&tmp);
+        }catch (std::domain_error& e){
+            std::cout << "BAD DATA:"<< it << std::endl;
+        }
     }
 }
 
 void InventoryManager::createReturnInvoice(std::string filename) {
-    std::cout << "Pretending to save to "<<filename<< std::endl;
-    ArrayList<Title>* titles=titleList->getSortedList();
-    Title* t;
-    for(int i=0;i<titles->itemCount();i++) {
-        t=titles->getPointerAt(i);
-        if(t->want<t->have){
-            // get more of the book
-            std::cout << "Return "<<t->have-t->want<<" "<<t->name<< std::endl;
+    std::cout << "Will save to " << filename << std::endl;
+    std::ofstream outfile(filename);
+    if (!outfile.is_open()) {
+        std::cout << "ERROR: cannot open file " << filename << " for writing" << std::endl;
+        return;
+    }
+
+    ArrayList<Title> *titles = titleList->getSortedList();
+    Title *t;
+    nlohmann::json books = nlohmann::json();
+    for (int i = 0; i < titles->itemCount(); i++) {
+        t = titles->getPointerAt(i);
+        if (t->want < t->have) {
+            std::cout << "Return " << t->have - t->want << " " << t->name << std::endl;
+            books.push_back(t->toJSON());
         }
     }
-    //TODO
-
+    outfile << std::setw(2) << books; //setw is overrided to set indent
+    outfile.close();
 }
+
 
 InventoryManager::~InventoryManager() {
     delete titleList;
