@@ -61,7 +61,7 @@ public:
     //returns true if the queue has no items, false otherwise
     bool isEmpty();
 
-    typename Queue<T>::QueueIterator* getIterator();
+    typename Queue<T>::QueueIterator* getIterator() override;
 };
 
 #include "LinkedQueue.inl"

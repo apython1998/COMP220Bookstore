@@ -10,7 +10,9 @@ class InventoryManager{
 private:
     TitleList* titleList;
 public:
-    InventoryManager(std::string savefile);
+    explicit InventoryManager(std::string savefile);
+
+    virtual ~InventoryManager();
 
     /**
      * Saves the inventory to a savefile

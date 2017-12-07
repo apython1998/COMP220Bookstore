@@ -63,3 +63,31 @@ void Title::printWaitlist() {
     delete iterator;
 }
 
+nlohmann::json Title::toJSON() {
+    nlohmann::json json=nlohmann::json();
+    json["name"]=name;
+    json["have"]=have;
+    json["want"]=want;
+    nlohmann::json wlst=nlohmann::json();
+    Queue<Person>::QueueIterator* iterator = waitlist->getIterator();
+    while(iterator->hasNext()) {
+        wlst.push_back(iterator->getNext().toJSON());
+    }
+    delete iterator;
+    json["waitlist"]=wlst;
+    return json;
+
+}
+
+Title::Title(nlohmann::json json) {
+    name=json["name"];
+    have=json["have"];
+    want=json["want"];
+    waitlist=new LinkedQueue<Person>();
+    if(!((nlohmann::basic_json<>)json["waitlist"]).is_null()){
+        for(nlohmann::json::iterator it = json["waitlist"].begin(); it != json["waitlist"].end(); ++it) {
+            waitlist->enqueue(Person(*it));
+        }
+    }
+}
+

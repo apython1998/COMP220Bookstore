@@ -7,4 +7,5 @@
 
 void queueCopyConstructorTest();
 void simpleStackQueueTest();
+void testDestructor();
 #endif //COMP220BOOKSTORE_QUEUETESTS_H

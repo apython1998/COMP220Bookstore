@@ -7,6 +7,8 @@
 
 
 #include <string>
+#include "json.hpp"
+
 /**
  * Basic class representing a person (that would be on a waitlist).
  */
@@ -17,10 +19,12 @@ public:
     std::string email;
     std::string contactPreference;
     Person(const Person& toCopy);
+    Person(nlohmann::json json);
     Person();
 
     Person(const std::string &name, const std::string &phoneNumber, const std::string &email,
            const std::string &contactPreference);
+    nlohmann::json toJSON();
 };
 
 

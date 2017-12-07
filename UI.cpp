@@ -19,7 +19,7 @@ UI::UI(InventoryManager* systemInventoryIn){
  * Destrutor for UI
  */
 UI::~UI() {
-    delete systemInventory;
+    //delete systemInventory; // UI does not really own the inventory manager
 }
 
 /**
@@ -242,11 +242,11 @@ void UI::run() {
                 systemInventory->addToWaitlist(title, name, email, phoneNumber, preferredMethodString);
             }
         } else if (command == "o") { //calls the create Order function
-            systemInventory->createBulkOrder("orderFile.JSON");
+            systemInventory->createBulkOrder("orderFile.json");
         } else if (command == "d") { //calls the load delivery function
-            systemInventory->loadDelivery("deliveryFile.JSON");
+            systemInventory->loadDelivery("deliveryFile.json");
         } else if (command == "r") { //calls the create return function
-            systemInventory->createReturnInvoice("returnFile.JSON");
+            systemInventory->createReturnInvoice("returnFile.json");
         }
         std::cout<< "\nEnter a Command (Press 'H' for Help): ";
         command = "";
@@ -256,5 +256,5 @@ void UI::run() {
             command = ::getCommandFromUser();
         }
     }
-    systemInventory->saveOutToFile("inventoryFile.JSON");
+    systemInventory->saveOutToFile("saveFile.json");
 }

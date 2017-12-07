@@ -105,3 +105,21 @@ void simpleStackQueueTest(){
     testQueue.dequeue();
     std::cout << testQueue.dequeue()<< std::endl;
 }
+void testDestructor(){
+    LinkedQueue<std::string>* linkedQueue=new LinkedQueue<std::string>();
+    delete linkedQueue;
+    std::cout << "LinkedQueue empty delete passed" << std::endl;
+    linkedQueue=new LinkedQueue<std::string>();
+    linkedQueue->enqueue("bob");
+    linkedQueue->enqueue("jack");
+    delete linkedQueue;
+    std::cout << "LinkedQueue full delete passed" << std::endl;
+    Queue<std::string>* testQueue=new LinkedQueue<std::string>();
+    delete testQueue;
+    std::cout << "Queue empty delete passed" << std::endl;
+    testQueue=new LinkedQueue<std::string>();
+    testQueue->enqueue("bob");
+    testQueue->enqueue("jack");
+    delete testQueue;
+    std::cout << "Queue full delete passed" << std::endl;
+}

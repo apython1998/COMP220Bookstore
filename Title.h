@@ -10,6 +10,7 @@
 
 #include "Person.h"
 #include "Queue.h"
+#include "json.hpp"
 
 class Title {
 private:
@@ -21,9 +22,9 @@ public:
 
     Title();
 
-    //Title(const Title &toCopy);
     Title(const std::string &name, int have, int want);
 
+    Title(nlohmann::json json);
     /**
      * Adds a person to the waitlist
      */
@@ -39,6 +40,8 @@ public:
     bool waitlistHasNext();
 
     void printWaitlist();
+
+    nlohmann::json toJSON();
 };
 
 
