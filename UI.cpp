@@ -30,13 +30,13 @@ int getNumberFromUser(){
     std::cin.clear();
     int userInputNumber;
     std::cin >> userInputNumber;
-    while (std::cin.fail()) {
+    while (std::cin.fail()) { //catches error if you enter a non-int
         std::cout<< "\nError: Please Re-Enter a Number: ";
         std::cin.clear();
         std::cin.ignore(256, '\n');
         std::cin >> userInputNumber;
     }
-    while (userInputNumber < 0) {
+    while (userInputNumber < 0) { //cant enter a number less than 0
         std::cout<< "\nError: Please Re-Enter a Number: ";
         std::cin >> userInputNumber;
         while (std::cin.fail()) {
@@ -46,24 +46,28 @@ int getNumberFromUser(){
         }
     }
     std::cin.clear();
-    std::cin.ignore(256, '\n');
+    std::cin.ignore(256, '\n'); //clears the rest of the line that exists when entering numbers
     return userInputNumber;
 }
 
+/**
+ * gets a valid phone number as a string
+ * @return
+ */
 std::string getPhoneNumberFromUser() {
     std::cin.clear();
     bool isValid = false;
     std::string phoneNumber;
     std::getline(std::cin, phoneNumber);
     while (!isValid) {
-        while (std::cin.fail()) {
+        while (std::cin.fail()) { //catches any errors
             std::cout << "\nError: Invalid Input. Please Re-Enter Your Phone Number: ";
             std::cin.clear();
             std::getline(std::cin, phoneNumber);
         }
-        if (phoneNumber.length() == 10) {
+        if (phoneNumber.length() == 10) { //a phone number must be 10 characters long
             for (int i=0; i<=9; i++) {
-                if (!isdigit(phoneNumber[i])) {
+                if (!isdigit(phoneNumber[i])) { //checks that every character is a number
                     std::cout<< "\nError: Input Should Only be Numbers.";
                     isValid = false;
                     break;
@@ -95,7 +99,7 @@ std::string getStringFromUser() {
     std::cin.clear();
     std::string userInputString;
     std::getline(std::cin, userInputString);
-    while (std::cin.fail()) {
+    while (std::cin.fail()) { //catches any errors
         std::cout<< "\nError: Invalid Input. Please Re-Enter a String: ";
         std::cin.clear();
         std::getline(std::cin, userInputString);

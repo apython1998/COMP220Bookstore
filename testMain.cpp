@@ -9,6 +9,8 @@
 #include "QueueTests.h"
 #include "UITester.h"
 #include "ArrayTitleList.h"
+#include "Person.h"
+#include "Title.h"
 
 bool DO_TESTS=true;
 
@@ -91,11 +93,16 @@ void testArrayTitleList() {
     std::cout << testList->find("bookE")->name << std::endl;
 }
 
+void testTitle() {
+    printf("\n*************************\nTESTING Title:\n*************************\n");
+}
+
 void runTests() {
     if(DO_TESTS){
         testLists();
         testQueues();
         testArrayTitleList();
+        testTitle();
         std::cout << std::endl;
         testUI();
         printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
