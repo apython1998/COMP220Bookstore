@@ -18,6 +18,7 @@ public:
     std::string phoneNumber;
     std::string email;
     std::string contactPreference;
+
     Person(const Person& toCopy);
     Person(nlohmann::json json);
     Person();

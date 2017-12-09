@@ -6,8 +6,8 @@
 #include "bookstoreMain.h"
 
 int main() {
-    //runTests();
-    bookstoreMain();
+    runTests();
+    //bookstoreMain();
 
     return 0;
 }

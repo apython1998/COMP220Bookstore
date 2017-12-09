@@ -8,6 +8,7 @@
 #define COMP220BOOKSTORE_TITLE_H
 
 
+#include <w32api/ndr64types.h>
 #include "Person.h"
 #include "Queue.h"
 #include "json.hpp"
@@ -22,6 +23,10 @@ public:
 
     Title();
 
+    ~Title();
+
+    Title(const Title& toCopy);
+    Title& operator=(const Title &toCopy);
     Title(const std::string &name, int have, int want);
 
     Title(nlohmann::json json);

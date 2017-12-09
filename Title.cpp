@@ -8,19 +8,44 @@
 
 Title::Title() {
     waitlist=new LinkedQueue<Person>();
+    have=0;
+    want=0;
+    name="";
 }
 
-//Title::Title(const Title &toCopy){
-//    name=toCopy.name;
-//    have=toCopy.have;
-//    want=toCopy.want;
-//    waitlist=new LinkedQueue<Person>(); //fixme
-//    //waitlist=new LinkedQueue<Person>((LinkedQueue)*toCopy.waitlist);
+Title::Title(const Title &toCopy){
+    name=toCopy.name;
+    have=toCopy.have;
+    want=toCopy.want;
+    waitlist=new LinkedQueue<Person>(); //fixme
+    toCopy.waitlist->isEmpty();
+    waitlist=new LinkedQueue<Person>(*(LinkedQueue*)toCopy.waitlist);
 
-//}
+}
+
+Title& Title::operator=(const Title &toCopy){
+    name=toCopy.name;
+    have=toCopy.have;
+    want=toCopy.want;
+    delete waitlist;
+    waitlist=new LinkedQueue<Person>(); //fixme
+    toCopy.waitlist->isEmpty();
+}
 
 Title::Title(const std::string &name, int have, int want) : name(name), have(have), want(want) {
     waitlist=new LinkedQueue<Person>();
+}
+
+Title::Title(nlohmann::json json) {
+    name=json["name"];
+    have=json["have"];
+    want=json["want"];
+    waitlist=new LinkedQueue<Person>();
+    if(!((nlohmann::basic_json<>)json["waitlist"]).is_null()){
+        for(nlohmann::json::iterator it = json["waitlist"].begin(); it != json["waitlist"].end(); ++it) {
+            waitlist->enqueue(Person(*it));
+        }
+    }
 }
 
 void Title::addToWaitlist(const Person &person) {
@@ -79,15 +104,7 @@ nlohmann::json Title::toJSON() {
 
 }
 
-Title::Title(nlohmann::json json) {
-    name=json["name"];
-    have=json["have"];
-    want=json["want"];
-    waitlist=new LinkedQueue<Person>();
-    if(!((nlohmann::basic_json<>)json["waitlist"]).is_null()){
-        for(nlohmann::json::iterator it = json["waitlist"].begin(); it != json["waitlist"].end(); ++it) {
-            waitlist->enqueue(Person(*it));
-        }
-    }
+Title::~Title() {
+    delete waitlist;
 }
 
