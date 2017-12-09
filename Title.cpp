@@ -18,8 +18,7 @@ Title::Title(const Title &toCopy){
     have=toCopy.have;
     want=toCopy.want;
     waitlist=new LinkedQueue<Person>(); //fixme
-    toCopy.waitlist->isEmpty();
-    waitlist=new LinkedQueue<Person>(*(LinkedQueue*)toCopy.waitlist);
+    waitlist=new LinkedQueue<Person>(*(LinkedQueue<Person>*)toCopy.waitlist);
 
 }
 
@@ -29,7 +28,7 @@ Title& Title::operator=(const Title &toCopy){
     want=toCopy.want;
     delete waitlist;
     waitlist=new LinkedQueue<Person>(); //fixme
-    toCopy.waitlist->isEmpty();
+    waitlist=new LinkedQueue<Person>(*(LinkedQueue<Person>*)toCopy.waitlist);
 }
 
 Title::Title(const std::string &name, int have, int want) : name(name), have(have), want(want) {

@@ -34,7 +34,7 @@ void ArrayTitleList::add(Title titleToAdd) {
 
 
     if (addAtIndex != -1) {
-        std::cout << "Added " << titleToAdd.name << " At Index: " << addAtIndex << std::endl;
+        //std::cout << "Added " << titleToAdd.name << " At Index: " << addAtIndex << std::endl;
         arrayTitleList->insertAt(titleToAdd, addAtIndex);
     }
 }
