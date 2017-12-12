@@ -246,11 +246,11 @@ void UI::run() {
                 systemInventory->addToWaitlist(title, name, email, phoneNumber, preferredMethodString);
             }
         } else if (command == "o") { //calls the create Order function
-            systemInventory->createBulkOrder("orderFile.json");
+            systemInventory->createBulkOrder("orderFile.txt");
         } else if (command == "d") { //calls the load delivery function
-            systemInventory->loadDelivery("deliveryFile.json");
+            systemInventory->loadDelivery("orderFile.txt");
         } else if (command == "r") { //calls the create return function
-            systemInventory->createReturnInvoice("returnFile.json");
+            systemInventory->createReturnInvoice("returnFile.txt");
         }
         std::cout<< "\nEnter a Command (Press 'H' for Help): ";
         command = "";
