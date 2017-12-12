@@ -8,7 +8,6 @@
 #define COMP220BOOKSTORE_TITLE_H
 
 
-#include <w32api/ndr64types.h>
 #include "Person.h"
 #include "Queue.h"
 #include "json.hpp"
@@ -45,6 +44,9 @@ public:
     bool waitlistHasNext();
 
     void printWaitlist();
+
+    static void printWaitlistHeader();
+    static void printPersonForWaitlist(Person person);
 
     nlohmann::json toJSON();
 };

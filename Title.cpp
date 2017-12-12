@@ -17,18 +17,21 @@ Title::Title(const Title &toCopy){
     name=toCopy.name;
     have=toCopy.have;
     want=toCopy.want;
-    waitlist=new LinkedQueue<Person>(); //fixme
-    waitlist=new LinkedQueue<Person>(*(LinkedQueue<Person>*)toCopy.waitlist);
+    LinkedQueue<Person>* ptr=(LinkedQueue<Person>*)toCopy.waitlist;
+    waitlist=new LinkedQueue<Person>(*ptr); // 2 lines to fix macs?
 
 }
 
 Title& Title::operator=(const Title &toCopy){
+    if(this==&toCopy)
+        return *this;
     name=toCopy.name;
     have=toCopy.have;
     want=toCopy.want;
     delete waitlist;
-    waitlist=new LinkedQueue<Person>(); //fixme
-    waitlist=new LinkedQueue<Person>(*(LinkedQueue<Person>*)toCopy.waitlist);
+    LinkedQueue<Person>* ptr=(LinkedQueue<Person>*)toCopy.waitlist;
+    waitlist=new LinkedQueue<Person>(*ptr); // 2 lines to fix macs?
+    return *this;
 }
 
 Title::Title(const std::string &name, int have, int want) : name(name), have(have), want(want) {
@@ -41,8 +44,8 @@ Title::Title(nlohmann::json json) {
     want=json["want"];
     waitlist=new LinkedQueue<Person>();
     if(!((nlohmann::basic_json<>)json["waitlist"]).is_null()){
-        for(nlohmann::json::iterator it = json["waitlist"].begin(); it != json["waitlist"].end(); ++it) {
-            waitlist->enqueue(Person(*it));
+        for (auto &it : json["waitlist"]) {
+            waitlist->enqueue(Person(it));
         }
     }
 }
@@ -62,27 +65,10 @@ bool Title::waitlistHasNext() {
 void Title::printWaitlist() {
     Queue<Person>::QueueIterator* iterator = waitlist->getIterator();
     std::cout << "\t----------------------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"\t";
-    std::cout.width(25);
-    std::cout << std::left<<"Name";
-    std::cout.width(35);
-    std::cout << std::left << "email";
-    std::cout.width(15);
-    std::cout << std::left << "phone #";
-    std::cout.width(20);
-    std::cout << std::left << "Contact pref" << std::endl;
+    printWaitlistHeader();
     std::cout << "\t----------------------------------------------------------------------------------------"<<std::endl;
     while(iterator->hasNext()){
-        Person person=iterator->getNext();
-        std::cout<<"\t";
-        std::cout.width(25);
-        std::cout << std::left<<person.name;
-        std::cout.width(35);
-        std::cout << std::left<<person.email;
-        std::cout.width(15);
-        std::cout << std::left <<person.phoneNumber;
-        std::cout.width(20);
-        std::cout << std::left << person.contactPreference << std::endl;
+        printPersonForWaitlist(iterator->getNext());
     }
     delete iterator;
 }
@@ -105,5 +91,29 @@ nlohmann::json Title::toJSON() {
 
 Title::~Title() {
     delete waitlist;
+}
+
+void Title::printWaitlistHeader() {
+    std::cout<<"\t";
+    std::cout.width(25);
+    std::cout << std::left<<"Name";
+    std::cout.width(35);
+    std::cout << std::left << "email";
+    std::cout.width(15);
+    std::cout << std::left << "phone #";
+    std::cout.width(20);
+    std::cout << std::left << "Contact pref" << std::endl;
+}
+
+void Title::printPersonForWaitlist(Person person) {
+    std::cout<<"\t";
+    std::cout.width(25);
+    std::cout << std::left<<person.name;
+    std::cout.width(35);
+    std::cout << std::left<<person.email;
+    std::cout.width(15);
+    std::cout << std::left <<person.phoneNumber;
+    std::cout.width(20);
+    std::cout << std::left << person.contactPreference << std::endl;
 }
 
