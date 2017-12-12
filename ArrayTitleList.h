@@ -24,7 +24,7 @@ public:
      * Copy Constructor
      * shallow copies listToCopy to the ArrayList pointer sortedTitleList
     */
-    explicit ArrayTitleList(const ArrayList<Title>* listToCopy);
+    ArrayTitleList(const ArrayTitleList &listToCopy);
 
     /**
      * Destructor
