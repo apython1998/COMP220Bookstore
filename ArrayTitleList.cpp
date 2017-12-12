@@ -7,7 +7,7 @@
 
 /**
      * Constructor
-     * creates a pointer to an empty ArrayList
+     * creates a pointer to an empty ArrayList<Title>
     */
 ArrayTitleList::ArrayTitleList() {
     arrayTitleList = new ArrayList<Title>();
@@ -15,20 +15,23 @@ ArrayTitleList::ArrayTitleList() {
 
 /**
  * Copy Constructor
- * shallow copies listToCopy to the ArrayList pointer sortedTitleList
+ * shallow copies listToCopy to the ArrayList<Title> pointer arrayTitleList
 */
-ArrayTitleList::ArrayTitleList(const ArrayList<Title>* listToCopy) {
-
+ArrayTitleList::ArrayTitleList(const ArrayTitleList &listToCopy) {
+    arrayTitleList = listToCopy.arrayTitleList;
 }
 
 /**
  * Destructor
- * frees ArrayList pointer sortedTitleList
+ * frees ArrayList<Title> pointer arrayTitleList
 */
 ArrayTitleList::~ArrayTitleList() {
     delete arrayTitleList;
 }
 
+/**
+ * Adds a title object to arrayTitleList if it does not already exist
+*/
 void ArrayTitleList::add(Title titleToAdd) {
     int addAtIndex = findLocation(titleToAdd.name);
 
@@ -39,6 +42,9 @@ void ArrayTitleList::add(Title titleToAdd) {
     }
 }
 
+/**
+ * Binary search stub function for Title objects
+*/
 Title* binarySearch(ArrayList<Title>* arrayTitleList, const int l, const int r, const std::string titleToFind) {
     if (r >= l) {
         int mid = l + (r - l)/2;
@@ -59,10 +65,16 @@ Title* binarySearch(ArrayList<Title>* arrayTitleList, const int l, const int r, 
     return nullptr;
 }
 
+/**
+ * Binary search stub function for Title objects
+*/
 Title* binarySearch(ArrayList<Title>* arrayTitleList, const int size, const std::string titleToFind) {
     return binarySearch(arrayTitleList, 0, size-1, titleToFind);
 }
 
+/**
+ * Finds Title object in arrayTitleList, returns nullptr if empty, otherwise returns pointer to Title
+*/
 Title* ArrayTitleList::find(const std::string& titleToFind) {
     if (arrayTitleList->isEmpty()) {
         return nullptr;
@@ -73,6 +85,9 @@ Title* ArrayTitleList::find(const std::string& titleToFind) {
     }
 }
 
+/**
+ * Binary search stub function for indexes
+*/
 int binarySearchInt(ArrayList<Title>* arrayTitleList, const int l, const int r, const std::string titleToFind) {
     if (r >= l) {
         int mid = l + (r - l)/2;
@@ -93,10 +108,16 @@ int binarySearchInt(ArrayList<Title>* arrayTitleList, const int l, const int r, 
     return l;
 }
 
+/**
+ * Binary search stub function for indexes
+*/
 int binarySearchInt(ArrayList<Title>* arrayTitleList, const int size, const std::string titleToFind) {
     return binarySearchInt(arrayTitleList, 0, size-1, titleToFind);
 }
 
+/**
+ * Find function for index location, used to add objects to ArrayList<Title>
+*/
 int ArrayTitleList::findLocation(const std::string& titleToFind) {
     if (arrayTitleList->isEmpty()) {
         return 0;
@@ -106,18 +127,15 @@ int ArrayTitleList::findLocation(const std::string& titleToFind) {
     }
 }
 
+/**
+ * Returns the sorted ArrayList<Title>
+*/
 ArrayList<Title>* ArrayTitleList::getSortedList() {
     return arrayTitleList;
 }
 
-
-
-
-
-
-
-
 //It made me do this for comparing Title objects together.
+//Wouldn't compile otherise.
 bool operator == (const Title t1, const Title t2) {
     //checks if t1 is greater and returns true, otherwise returns false when it is less than or equal
     return t2.name < t1.name;
