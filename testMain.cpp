@@ -4,13 +4,9 @@
 #include <iostream>
 #include "List.h"
 #include "ArrayList.h"
-//#include "LinkedList.h"
 #include "ListTests.h"
 #include "QueueTests.h"
-#include "UITester.h"
 #include "ArrayTitleList.h"
-#include "Person.h"
-#include "Title.h"
 
 bool DO_TESTS=true;
 
@@ -104,7 +100,6 @@ void runTests() {
         testArrayTitleList();
         testTitle();
         std::cout << std::endl;
-        testUI();
         printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
     }else{
 
