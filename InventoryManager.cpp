@@ -164,9 +164,17 @@ void InventoryManager::loadDelivery(std::string filename) {
             title->have+=ct;
         }else{
             // otherwise, new book
-            addTitle(name,ct,0);
+            if(name!=""&&ct>0)
+                addTitle(name,ct,0);
         }
     }
+    infile.close();
+    std::ofstream ofile (filename);
+    if (!ofile.is_open()){
+        std::cout << "ERROR: cannot open file "<<filename<<" to clear"<< std::endl;
+        return;
+    }
+    ofile.close();
 }
 
 
