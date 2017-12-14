@@ -10,6 +10,5 @@ void bookstoreMain() {
     UI* systemUI = new UI(systemInventoryManager);
     systemUI->run();
     delete systemUI;
-    delete systemInventoryManager;
 }
 
