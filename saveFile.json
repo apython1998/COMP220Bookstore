@@ -1,25 +1,31 @@
 [
   {
-    "have": 23,
+    "have": 66,
     "name": "Bob Marley",
     "waitlist": null,
-    "want": 45
+    "want": 44
   },
   {
-    "have": 2,
+    "have": 6,
     "name": "Heart and Song",
     "waitlist": null,
     "want": 4
   },
   {
-    "have": 0,
+    "have": 1,
     "name": "Me, Myself, and I",
+    "waitlist": null,
+    "want": 1
+  },
+  {
+    "have": 0,
+    "name": "Title",
     "waitlist": [
       {
-        "contactPref": "Call",
-        "email": "jimmy.boi@aol.net",
-        "name": "Jimmy G.",
-        "phone": "(345)555-3344"
+        "contactPref": "Text",
+        "email": "Email",
+        "name": "Name",
+        "phone": "(518)928-7418"
       }
     ],
     "want": 1

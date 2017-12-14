@@ -19,7 +19,7 @@ UI::UI(InventoryManager* systemInventoryIn){
  * Destrutor for UI
  */
 UI::~UI() {
-    //delete systemInventory; // UI does not really own the inventory manager
+    delete systemInventory;
 }
 
 /**
