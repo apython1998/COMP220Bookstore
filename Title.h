@@ -43,8 +43,15 @@ public:
      */
     bool waitlistHasNext();
 
+    /**
+     * Prints the waitlist nicely
+     */
     void printWaitlist();
 
+    /**
+     * Gets the size of the waitlist. O(n)!
+     */
+    int waitlistCount();
     static void printWaitlistHeader();
     static void printPersonForWaitlist(Person person);
 

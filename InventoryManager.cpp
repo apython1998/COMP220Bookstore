@@ -21,6 +21,7 @@ InventoryManager::InventoryManager(std::string savefile) {
         nlohmann::json loaded;
         infile >> loaded;
         infile.close();
+        // for title in data
         for (auto &it : loaded) {
             try{
                 titleList->add(Title(it));
@@ -44,18 +45,17 @@ void InventoryManager::saveOutToFile(std::string savefile) {
     ArrayList<Title>* titles=titleList->getSortedList();
     nlohmann::json books=nlohmann::json();
 
+    // dump titles to the json file
     for(int i=0;i<titles->itemCount();i++) {
         books.push_back(titles->getPointerAt(i)->toJSON());
     }
 
     outfile <<std::setw(2)<< books; //setw is overrided to set indent
     outfile.close();
-    //TODO
 }
 
 bool InventoryManager::checkIfTitleExists(const std::string& title) {
     return titleList->find(title)!=nullptr;
-    //TODO
 }
 
 void InventoryManager::listInventory() {
@@ -99,15 +99,12 @@ void printTitleOneLine(Title* t){
 
 void InventoryManager::inquireTitleOneLine(std::string title) {
     printTitleOneLine(titleList->find(title));
-    //TODO
 }
 
-void
-InventoryManager::addToWaitlist(std::string title, std::string personName, std::string email, std::string phoneNumber,
-                                std::string contactPref) {
+void InventoryManager::addToWaitlist(std::string title, std::string personName, std::string email,
+                                     std::string phoneNumber, std::string contactPref) {
     Title* t = titleList->find(title);
     t->addToWaitlist(Person(personName,phoneNumber,email,contactPref));
-    //TODO
 }
 
 bool InventoryManager::sell(std::string title) {
@@ -115,14 +112,12 @@ bool InventoryManager::sell(std::string title) {
     if(titleList->find(title)->have<1)return false;
     titleList->find(title)->have--;
     return true;
-    //TODO
 }
 
 void InventoryManager::addTitle(std::string title, int have, int want) {
     std::cout << "Added ";
     titleList->add(Title(title,have,want));
     inquireTitleOneLine(title);
-    //TODO
 }
 
 void InventoryManager::modifyWantValue(std::string title, int newWant) {
@@ -145,9 +140,9 @@ void InventoryManager::loadDelivery(std::string filename) {
         std::string name;
         s>>ct;
         s>>std::ws;//skip the space
-        std::getline(s,name);
+        std::getline(s,name); // get the rest of the line as the title name
         if(checkIfTitleExists(name)) {
-            std::cout << "Recieved " <<ct<< " of title " <<name<< std::endl;
+            std::cout << "Received " <<ct<< " of title " <<name<< std::endl;
             // if the name exists, do the waitlist thing, then fill the inventory
             Title *title = titleList->find(name);
             if (title->waitlistHasNext()) {
@@ -161,6 +156,7 @@ void InventoryManager::loadDelivery(std::string filename) {
                     ct--;
                 }
             }
+            // put the rest of the new titles in the stock
             title->have+=ct;
         }else{
             // otherwise, new book
@@ -210,9 +206,10 @@ void InventoryManager::createBulkOrder(std::string filename) {
     Title* t;
     for(int i=0;i<titles->itemCount();i++) {
         t=titles->getPointerAt(i);
-        if(t->want>t->have){
-            std::cout << "Get "<<t->want-t->have<<" "<<t->name<< std::endl;
-            outfile << t->want - t->have << " "<<t->name<<std::endl;
+        if((t->waitlistCount()+t->want)>t->have){
+            int amt=t->waitlistCount() + t->want - t->have;
+            std::cout << "Get "<<amt<<" "<<t->name<< std::endl;
+            outfile << amt << " "<<t->name<<std::endl;
         }
     }
     outfile.close();
