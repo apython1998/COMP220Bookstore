@@ -7,7 +7,7 @@
 
 int main() {
     runTests();
-    //bookstoreMain();
+    bookstoreMain();
 
     return 0;
 }
