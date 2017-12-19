@@ -117,3 +117,13 @@ void Title::printPersonForWaitlist(Person person) {
     std::cout << std::left << person.contactPreference << std::endl;
 }
 
+int Title::waitlistCount() {
+    int ct=0;
+    Queue<Person>::QueueIterator* iterator = waitlist->getIterator();
+    while(iterator->hasNext()) {
+        iterator->getNext();
+        ct++;
+    }
+    return ct;
+}
+

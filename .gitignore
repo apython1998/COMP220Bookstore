@@ -58,3 +58,7 @@ fabric.properties
 COMP220Bookstore\.exe
 
 COMP220Bookstore\.exe\.stackdump
+
+orderFile\.txt
+
+returnFile\.txt
