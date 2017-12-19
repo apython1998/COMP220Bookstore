@@ -15,7 +15,7 @@ ArrayTitleList::ArrayTitleList() {
 
 /**
  * Copy Constructor
- * shallow copies listToCopy to the ArrayList<Title> pointer arrayTitleList
+ * shallow copy
 */
 ArrayTitleList::ArrayTitleList(const ArrayTitleList &listToCopy) {
     arrayTitleList = listToCopy.arrayTitleList;
@@ -135,7 +135,7 @@ ArrayList<Title>* ArrayTitleList::getSortedList() {
 }
 
 //It made me do this for comparing Title objects together.
-//Wouldn't compile otherise.
+//Wouldn't compile otherwise.
 bool operator == (const Title t1, const Title t2) {
     //checks if t1 is greater and returns true, otherwise returns false when it is less than or equal
     return t2.name < t1.name;

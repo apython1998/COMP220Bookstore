@@ -22,40 +22,42 @@ public:
 
     /**
      * Copy Constructor
-     * shallow copies listToCopy to the ArrayList pointer sortedTitleList
+     * shallow copy
     */
     ArrayTitleList(const ArrayTitleList &listToCopy);
 
     /**
      * Destructor
-     * frees ArrayList pointer sortedTitleList
+     * frees arrayTitleList
     */
     ~ArrayTitleList() override;
 
     /**
-     * finds the location of a Title object in the sortedTitleList using binary search
+     * finds the location of a Title object in arrayTitleList using binary search
      * @param titleToFind the Title to find
-     * @returns index of Title (-1 if it doesn't exist)
+     * @returns Title object (nullptr if it doesn't exist)
     */
     Title* find(const std::string& titleToFind) override;
 
     /**
      * finds the location of a Title object in the sortedTitleList using binary search
      * @param titleToFind the Title to find
-     * @returns index of Title (-1 if it doesn't exist)
+     * @returns index of Title
     */
     int findLocation(const std::string& titleToFind) override;
 
     /**
-     * adds the Title object to the sortedTitleList in its alphabetical position
+     * adds the Title object to the sortedArrayList in its alphabetical position
      * @param titleToAdd the Title to add
-     * @throws illegal_argument exception if Title already exists in sortedTitleList
-     * @post sortedTitleList is in alphabetical order
+     * @post sortedArrayList is in alphabetical order
     */
     void add(Title titleToAdd) override;
 
+    /**
+     * returns the sorted array list
+     * @return ArrayList object
+     */
     ArrayList<Title>* getSortedList() override;
-
 };
 
 #endif //COMP220BOOKSTORE_ARRAYTITLELIST_H
