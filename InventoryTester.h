@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include "Title.h"
 
 namespace InvTester{
     void assertFilesEqual(std::string fileA, std::string fileB);

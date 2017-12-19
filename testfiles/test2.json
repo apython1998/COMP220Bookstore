@@ -1,0 +1,26 @@
+[
+  {
+    "have": 1,
+    "name": "BOOK 1",
+    "waitlist": null,
+    "want": 1
+  },
+  {
+    "have": 1,
+    "name": "BOOK 2",
+    "waitlist": null,
+    "want": 1
+  },
+  {
+    "have": 3,
+    "name": "BOOK 3",
+    "waitlist": null,
+    "want": 3
+  },
+  {
+    "have": 1,
+    "name": "Go Dog Go",
+    "waitlist": null,
+    "want": 0
+  }
+]

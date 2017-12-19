@@ -62,3 +62,9 @@ COMP220Bookstore\.exe\.stackdump
 orderFile\.txt
 
 returnFile\.txt
+
+testfiles/tmp\.json
+
+testfiles/delivery\.txt
+
+testfiles/tmp\.txt

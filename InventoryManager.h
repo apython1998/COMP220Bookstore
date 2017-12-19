@@ -6,7 +6,9 @@
 #define COMP220BOOKSTORE_INVENTORYMANAGER_H
 
 #include "TitleList.h"
+#include "InventoryTester.h"
 class InventoryManager{
+    friend void InvTester::testIO();
 private:
     TitleList* titleList;
 public:

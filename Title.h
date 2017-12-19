@@ -11,8 +11,10 @@
 #include "Person.h"
 #include "Queue.h"
 #include "json.hpp"
-
+#include "InventoryTester.h"
+//namespace InvTester{}
 class Title {
+    friend bool assertEquals(Title a, Title b);
 private:
     Queue<Person>* waitlist;
 public:
