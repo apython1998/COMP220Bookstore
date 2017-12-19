@@ -1,5 +1,6 @@
 //
 // Created by chay on 11/28/2017.
+// Sorted array implementation of TitleList
 //
 
 #ifndef COMP220BOOKSTORE_ARRAYTITLELIST_H

@@ -1,5 +1,6 @@
 //
-// Created by Alex Python on 11/27/17.
+// Created by Benjamin Welsh on 11/27/17.
+// Manages a bookstore inventory
 //
 
 #ifndef COMP220BOOKSTORE_INVENTORYMANAGER_H

@@ -54,9 +54,18 @@ public:
      * Gets the size of the waitlist. O(n)!
      */
     int waitlistCount();
+    /**
+     * Pretty print helper function
+     */
     static void printWaitlistHeader();
+    /**
+     * Pretty prints a person for a table
+     */
     static void printPersonForWaitlist(Person person);
 
+    /**
+     * Returns representative json object
+     */
     nlohmann::json toJSON();
 };
 

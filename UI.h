@@ -1,5 +1,6 @@
 //
 // Created by Alex Python on 11/27/17.
+// Interface class for controlling a bookstore inventory
 //
 
 #ifndef COMP220BOOKSTORE_UI_H
