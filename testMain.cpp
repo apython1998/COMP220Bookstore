@@ -11,6 +11,7 @@
 #include "UI.h"
 #include "Person.h"
 #include "Title.h"
+#include "InventoryTester.h"
 
 bool DO_TESTS=true;
 
@@ -98,6 +99,7 @@ void runTests() {
         testLists();
         testQueues();
         testArrayTitleList();
+        InvTester::runInvTests();
         std::cout << std::endl;
          printf("\n*************************\nWOOT TESTS FINISHED WOOT\n*************************\n");
     }else{

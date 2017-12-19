@@ -1,0 +1,27 @@
+[
+  {
+    "have": 0,
+    "name": "BOOK 1",
+    "waitlist": [
+      {
+        "contactPref": "doot",
+        "email": "bob@bob.com",
+        "name": "bob",
+        "phone": "1234567890"
+      }
+    ],
+    "want": 1
+  },
+  {
+    "have": 5,
+    "name": "BOOK 2",
+    "waitlist": null,
+    "want": 3
+  },
+  {
+    "have": 1,
+    "name": "BOOK 3",
+    "waitlist": null,
+    "want": 3
+  }
+]
